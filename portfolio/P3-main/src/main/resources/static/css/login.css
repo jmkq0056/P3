@@ -1,0 +1,116 @@
+/* Login Page Specific Styles */
+
+body.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #005f8d;
+    font-family: Arial, sans-serif;
+}
+
+/* Login Container */
+.login-container {
+    background-color: rgba(255, 255, 255, 0);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Input field styling */
+.input-field {
+    width: 75%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for buttons */
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.login-btn {
+    background-color: #005f8d;
+    color: #ffffff;
+    width: 100%; /* Button takes full width */
+    margin-top: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.forgot-btn {
+    background-color: #ffffff;
+    color: #005f8d;
+    width: 50%; /* Button takes full width */
+    margin-top: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info {
+    margin-top: 20px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 18px; /* Increase text size for better readability */
+    line-height: 1.6; /* Add spacing between lines */
+    font-weight: 500; /* Make the text slightly bolder */
+    letter-spacing: 0.5px; /* Add slight spacing between letters */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add a subtle text shadow for depth */
+    font-family: 'Arial', sans-serif; /* Use a clean and modern font */
+}
+
+
+.social-media {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.social-media a {
+    margin: 0 10px;
+}
+
+.social-media img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-top: 30px;
+
+    /* Stronger shadow for emphasis */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+
+    /* Optional: Add a light background */
+    background-color: #fff;
+
+    /* Add transition for smoother hover effects */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for better interactivity */
+.social-media img:hover {
+    transform: scale(1.1); /* Slightly enlarges the image */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+
+.login-btn{
+    width:80%;
+}
+
+/* Logo Section */
+.logo-container {
+    margin-top: 20px;
+}
+
+.logo {
+    width: 400px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+}

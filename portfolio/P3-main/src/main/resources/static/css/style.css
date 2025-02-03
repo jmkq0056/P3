@@ -1,0 +1,120 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0188b8;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6; /* Set a consistent line height across all pages */
+    color: #333; /* General text color */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 15px;
+    line-height: 1.2;
+    color: #0077B6; /* A default heading color */
+}
+
+p {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: #0188b8;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    font-family: inherit;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+input, select, textarea {
+    font-family: inherit;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Table styles (for general tables, not specific ones) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #0077B6;
+    color: white;
+
+    font-size: 14px;
+}
+
+td {
+    font-size: 14px;
+    color: #333;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* General button styles */
+button {
+    padding: 10px 20px;
+    background-color: #0077B6;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0077B6;
+}
+
+/* Form field styles */
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* Global container for central layout */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.login-page .logo {
+    width: 150px; /* Juster til passende størrelse */
+    height: auto; /* Bevar proportionerne */
+    display: block;
+    margin: 20px auto; /* Lidt afstand fra toppen og centrer billedet */
+}

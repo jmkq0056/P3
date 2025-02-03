@@ -1,0 +1,40 @@
+/* Navigation Bar */
+.menu-bar {
+    background-color: #007fbf; /* Dark background */
+    overflow: hidden;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgb(186, 186, 186);
+    position: fixed; /* Fix the navbar to the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure the navbar stays on top */
+}
+
+.menu-bar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center the menu items */
+}
+
+.menu-bar li {
+    margin: 0 15px;
+}
+
+.menu-bar a, .menu-bar button {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.menu-bar a:hover, .menu-bar button:hover {
+    background-color: #005f8d; /* Hover background */
+    border-radius: 5px;
+    transform: scale(1.05);
+}

@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    div.content
+        div.row.center
+            div.scrollable-content
+                div.list-title
+                    h1 #{expense.name} (#{expense.spent}/#{expense.allocated})
+                    a.btn.small(href='/home') X
+                if expense.is_overspent
+                    p.warning= 'You\'ve overspent in ' + expense.name + '! Adjust your budget in '
+                        a(href='/settings' style='text-decoration: underline; color: orange') Settings.
+                div.list-title
+                    h2 Purchases
+                //Doesn't work for some reason:
+                if !purchases
+                    p.warning No purchases yet
+                ul
+                    each purchase in purchases
+                        li.non-clickable(style='margin-bottom: 40px;')
+                            span.label-name #{purchase.weekday}
+                            div.row
+                                span.label-name Spent Amount: #{purchase.spent} DKK
+                                a.btn.small(href=`/home/purchase/${purchase._id}/update`) Edit
+                                a.btn.small(href=`/home/purchase/${purchase._id}/delete`) Delete
+                div.row.space-around
+                    a.btn(href=`/home/expense/${expense._id}/purchase/create`) Create New Purchase

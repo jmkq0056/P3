@@ -1,0 +1,643 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+h2 {
+    font-size: 2em; /* Larger font size for better visibility */
+    font-weight: bold;
+    text-align: center; /* Center align all h2 elements */
+    color: #0077B6; /* Match the color theme */
+
+    letter-spacing: 2px; /* Add some spacing between letters */
+    margin-bottom: 20px; /* Add space below */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effects */
+    position: relative;
+}
+
+/* Add Underline Effect */
+h2::after {
+    content: '';
+    display: block;
+    width: 50%; /* Adjust width for the underline */
+    height: 4px; /* Thickness of the underline */
+    background-color: #0077B6; /* Same color as the text */
+    margin: 10px auto 0; /* Center align and add spacing */
+    transition: width 0.3s ease; /* Smooth animation on hover */
+}
+
+/* Hover Effects */
+h2:hover {
+    color: #005f8e; /* Slightly darker shade on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+h2:hover::after {
+    width: 70%; /* Extend underline width */
+}
+
+/* Optional Glow Animation */
+h2.glow-effect:hover {
+    text-shadow: 0 0 10px rgba(0, 119, 182, 0.8), 0 0 20px rgba(0, 119, 182, 0.5); /* Subtle glowing effect */
+}
+
+/* Main Container */
+.place-order-container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0);
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0px auto;
+
+}
+
+/* Logo Section */
+.logo-container {
+    margin-top: 20px;
+}
+
+.logo {
+    width: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+/* Welcome Message */
+.welcome-message {
+    font-size: 2.0em;
+    color: #489ac6;
+    margin-top: 20px;
+
+}
+
+/* Order Content */
+.order-content {
+    margin-top: 40px;
+}
+
+.order-content p {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form Fields */
+.input-field {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    font-size: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Submit Button */
+.submit-btn {
+    background-color: #0077b6;
+    color: white;
+    font-size: 18px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #005f8d;
+}
+
+/* Footer */
+.user-footer {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #0077b6;
+    color: white;
+    margin-top: auto;
+}
+
+.user-footer p {
+    margin-bottom: 10px;
+}
+
+.user-footer a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.user-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Collapsible Section Styling */
+#menuSection.collapsible-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 85%;
+
+    margin: 20px auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Default Table Styling */
+.styled-table {
+    width: 100%;
+    border-collapse: separate; /* Allows for spacing between rows and columns */
+    margin-top: 20px;
+    border-radius: 50px; /* Rounder corners for the table */
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-spacing: 15px; /* Adds space between rows and columns */
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 10px; /* Increased padding for a cleaner look */
+    text-align: center; /* Center text in both header and cells */
+    border: none; /* Remove default borders */
+    background-color: white; /* Consistent background for cells */
+    border-radius: 50px; /* Rounded cells */
+}
+
+.styled-table th {
+    background-color: #0077B6;
+    color: white;
+
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease; /* Hover effect for headers */
+}
+
+.styled-table td {
+    font-size: 14px;
+    color: #333;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Add animation for hover */
+}
+
+.styled-table th:hover {
+    background-color: #005f8e; /* Slightly darker blue on hover */
+}
+
+.styled-table td:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+    background-color: #f5f5f5; /* Subtle background change */
+}
+
+/* Responsive Table Styling for Mobile */
+@media (max-width: 768px) {
+    .styled-table {
+        display: block;
+        overflow-x: auto; /* Enable horizontal scrolling */
+        white-space: nowrap; /* Prevent table cells from wrapping */
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 15px; /* Adjust padding for smaller screens */
+        font-size: 12px; /* Reduce font size */
+    }
+}
+
+/* For Extremely Small Screens */
+@media (max-width: 480px) {
+    .styled-table {
+        font-size: 12px; /* Further reduce font size */
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 10px; /* Reduce padding further */
+    }
+}
+/* Input Field Styling within Table */
+.styled-table input[type="number"] {
+    width: 80px; /* Slightly wider for better usability */
+    padding: 10px; /* Match padding with table cells */
+    text-align: center;
+    border: 1px solid #0077B6; /* Match the color theme */
+    border-radius: 10px; /* Rounded corners to match table style */
+    font-size: 14px;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+    transition: box-shadow 0.3s ease, transform 0.2s ease; /* Smooth hover animations */
+}
+
+.styled-table input[type="number"]:focus {
+    outline: none; /* Remove default outline on focus */
+    box-shadow: 0 0 8px rgba(0, 119, 182, 0.5); /* Highlighted blue glow */
+    transform: scale(1.05); /* Slight zoom effect on focus */
+}
+
+/* Availability Icons Styling */
+.styled-table td span {
+    font-size: 1.5em; /* Make icons slightly larger for visibility */
+    display: inline-block;
+    padding: 5px; /* Add some spacing around the icons */
+    color: #0077B6; /* Match the blue theme */
+    background-color: #e6f7ff; /* Light background for contrast */
+    border-radius: 50%; /* Make icons circular */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Hover effect */
+}
+
+.styled-table td span:hover {
+    transform: scale(1.2); /* Slight zoom effect on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+
+.icon-button {
+    background-color: #0077B6;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 0;
+    transition: background-color 0.3s ease;
+
+}
+
+.icon-button:hover {
+    background-color: #005f8d;
+}
+
+
+.info-button i, .add-to-cart-button i{
+    font-size: 1rem;
+}
+
+/* Table Row Hover Effect */
+.styled-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000; /* Increased z-index for better overlay */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay for better focus */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fff; /* Changed to pure white for a cleaner look */
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the modal */
+    padding: 30px; /* Increased padding for better spacing */
+    border: none; /* Removed border for a cleaner appearance */
+    width: 80%;
+    max-width: 500px;
+    max-height: 80%; /* Ensure modal doesn't exceed 80% of the viewport height */
+    overflow-y: auto; /* Enable vertical scrolling for overflowing content */
+    border-radius: 10px; /* Slightly more rounded corners */
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+}
+
+/* Modal Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Added spacing below header */
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 24px; /* Increased font size for better readability */
+    color: #333; /* Darker color for better contrast */
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.close:hover,
+.close:focus {
+    color: #000; /* Darker color on hover for visual feedback */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Modal Content Text */
+#infoContent {
+    text-align: left; /* Ensures modal content is left-aligned */
+    margin-top: 20px; /* Adds spacing after the header */
+    font-size: 16px; /* Standard font size */
+    color: #555; /* Softer text color for readability */
+    line-height: 1.6; /* Improved line spacing */
+}
+
+/* Responsive Modal for Smaller Screens */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%; /* Increase width for smaller screens */
+        padding: 20px; /* Adjust padding */
+        max-height: 90%; /* Increase height allowance */
+    }
+
+    .modal-header {
+        flex-direction: column; /* Stack header content */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .modal-header h2 {
+        font-size: 22px; /* Adjust header font size */
+    }
+
+    .close {
+        font-size: 26px; /* Adjust close button size */
+    }
+}
+
+/* For Extremely Small Screens */
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%; /* Maximize width on small screens */
+        padding: 15px; /* Reduce padding further */
+        max-height: 90%; /* Maintain height limit */
+    }
+
+    .modal-header h2 {
+        font-size: 20px; /* Further reduce header font size */
+    }
+
+    .close {
+        font-size: 24px; /* Adjust close button size */
+    }
+
+    #infoContent {
+        font-size: 14px; /* Adjust content font size */
+    }
+}
+
+/* Container to position the View Basket button in the top right */
+.top-right-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+
+/* Style for the View Basket button */
+.view-cart-button {
+    background-color: #0077B6;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.view-cart-button i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.view-cart-button:hover {
+    background-color: #005f8d;
+}
+
+/* logOut and goBack container */
+.top-left-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Style for the View Basket (Logout) button */
+.logout-button {
+    background-color: transparent; /* Transparent background */
+    color: black; /* Text color */
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s, transform 0.3s;
+    cursor: pointer;
+    border: 2px solid transparent; /* No border */
+}
+
+.logout-button i {
+    margin-right: 8px;
+    font-size: 18px;
+    color: #2c2c2c; /* Dark grey-blackish color for the icon */
+}
+
+.logout-button:hover {
+    transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+.logout-button i:hover {
+    color: #005f8d; /* Icon changes to a slightly lighter grey-black on hover */
+}
+
+.back-button {
+    background-color: transparent; /* Transparent background */
+    color: black; /* Text color */
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s, transform 0.3s;
+    cursor: pointer;
+    border: 2px solid transparent; /* No border */
+}
+
+.back-button i {
+    margin-right: 8px;
+    font-size: 18px;
+    color: #2c2c2c; /* Dark grey-blackish color for the icon */
+}
+
+.back-button:hover {
+    color: #0077B6; /* Text changes to a light blue on hover */
+    transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+.back-button i:hover {
+    color: #005f8d; /* Icon changes to a slightly lighter grey-black on hover */
+}
+/* Prevent any stretching of the button if it's inside a flex container */
+.top-left-container {
+    display: flex;
+    justify-content: flex-start;  /* Ensure elements are aligned to the left */
+    align-items: center;  /* Align the button vertically */
+}
+
+/* If you use display: block or width: 100% on the button's parent container,
+   this will make sure the button does not fill the entire width. */
+
+.checkout-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.checkout-button {
+    background-color: #0077B6;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 18px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.checkout-button:hover {
+    background-color: #005f8d;
+}
+
+.bulk-add-button {
+    background-color: #0077B6;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    display: block; /* Block display to allow margin auto centering */
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+    width: fit-content; /* Ensure the button width fits its content */
+    margin: 0 auto; /* Center the button */
+}
+
+.bulk-add-button i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.bulk-add-button:hover {
+    background-color: #005f8b;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.slideshow-container {
+    width: 300px;
+    height: 200px; /* Fixed dimensions for images */
+    position: relative;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #f9f9f9;
+}
+
+/* Images inside slideshow */
+.slideshow-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Dots for navigation */
+.dots-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #0077B6;
+}
+
+
+/* Default Styling */
+.button-row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+/* Mobile Responsive Styling */
+@media (max-width: 768px) {
+    .button-row {
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center;   /* Center the buttons */
+        gap: 20px;             /* Add spacing between buttons */
+    }
+}
+
+
+.btn.toggle-btn {
+    background-color: #0077b6;
+    color: white;
+    font-size: medium;
+    padding: 15px 15px;
+    border: none;
+    border-radius: 50px;
+    text-align: center;
+    text-decoration: none; /* Remove underline */
+    display: inline-block;
+}
+
+.btn.toggle-btn i {
+    margin-right: 8px;
+}
+
+.btn.toggle-btn:hover {
+    background-color: #005f8d;
+}

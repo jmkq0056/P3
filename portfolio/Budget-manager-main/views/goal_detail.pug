@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    block content
+        div.content
+            div.row.center
+                div.popup
+                    div.list-title
+                        h1= `Goal: ${goal.name} (${goal.saved}/${goal.cost})`
+                        a.btn.small(href='/wishlist') X
+                    h2 #{goal.is_main_goal ? '(Main Goal)' : ''}
+                    if goal.is_fulfilled
+                        a.btn(href=`/wishlist/goal/${goal._id}/delete`) Purchase goal
+                    a.btn(href=`/wishlist/goal/${goal._id}/update`) Edit
+                    a.btn.space(href=`/wishlist/goal/${goal._id}/delete`) Delete

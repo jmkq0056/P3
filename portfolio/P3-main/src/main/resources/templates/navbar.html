@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Navigation Bar</title>
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="menu-bar">
+  <ul>
+    <!-- Add token parameter to the Home link -->
+    <li><a th:href="@{/user/home(token=${token})}">Home</a></li>
+
+    <!-- Add token to each user-related action -->
+    <li><a th:href="@{/user/place/order(token=${token})}">Place Order</a></li>
+    <li><a th:href="@{/user/order/history(token=${token})}">Order History</a></li>
+    <li><a th:href="@{/user/edit/profile(token=${token})}">Edit Profile</a></li>
+
+
+    <!-- Logout button -->
+    <li>
+      <form action="/user/logout" method="post" style="display: inline;">
+        <input type="hidden" name="token" th:value="${token}">
+        <button type="submit" style="background:none; border:none; color:white; font-size:16px; cursor:pointer;">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </form>
+    </li>
+  </ul>
+</nav>
+</body>
+</html>

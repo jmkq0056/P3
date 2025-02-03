@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    div.content
+        div.section-title
+            h1 WEEKLY BUDGET
+
+
+        div.scrollable-content
+            ul
+                each expense in expenses
+                    li.list-item
+                        a(href=`/home/expense/${expense._id}`)
+                            div.label
+                                span.label-name= expense.name
+                                span.label-status #{expense.spent} / #{expense.allocated}
+                            div.progress-bar
+                                div(class=(expense.is_overspent ? 'progress-fill-exceeded' : 'progress-fill'), style=`width: ${expense.percentage_spent}%;`)
+                                if expense.is_overspent
+                                    p.warning You've spent too much
+        div.page-footer
+            if mainGoal
+                div.main-goal
+                    a(href=`/wishlist/goal/${mainGoal._id}`)
+                        div.main-goal-label
+                            span.main-goal-name= mainGoal.name
+                            span.main-goal-progress #{mainGoal.saved} / #{mainGoal.cost}
+                        div.main-goal-progress-bar
+                            div.main-goal-progress-fill(style=`width: ${mainGoal.percentage_saved}%`)
+                        span.achieved-by Goal Achieved By:
+                        span.achieved-date= goalAchievedBy

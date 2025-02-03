@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Basket - Sylles Fabrik</title>
+    <link rel="stylesheet" type="text/css" href="/css/order-history.css">
+    <link rel="stylesheet" type="text/css" href="/css/admin-home.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="/js/order-history.js"></script>
+</head>
+<body>
+<!-- Include Navigation Menu -->
+<div th:insert="~{navbar :: body}"></div>
+
+
+<!-- Header Section -->
+<div class="place-order-container">
+    <div class="logo-container">
+        <img src="/sylle_logo/sylle_logo2.png" alt="Sylles Fabrik Logo" class="logo">
+    </div>
+    <h1 class="welcome-message">Edit Your Profile</h1>
+    <div class="error-message" th:if="${error}" style="text-align: center;">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
+    <div class="success-message" th:if="${message}" style="text-align: center;">
+        <p th:text="${message}" style="color: green;"></p>
+    </div>
+
+    <div class="form-container">
+        <h2 class="form-title">Update Company Information</h2>
+        <form action="/user/edit/profile/make-changes" method="post" class="profile-form">
+            <!-- First Row: Company Name and CVR Number -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="companyName" class="form-label">Company Name</label>
+                    <input type="text" id="companyName" name="companyName"
+                           th:value="${companyName}" placeholder="Company Name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="companyCVR" class="form-label">CVR Number</label>
+                    <input type="text" id="companyCVR" name="companyCVR"
+                           th:value="${cvr}" placeholder="CVR Number" class="form-input" required>
+                </div>
+            </div>
+            <!-- Second Row: Email and Phone Number -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="companyEmail" class="form-label">Email Address</label>
+                    <input type="email" id="companyEmail" name="companyEmail"
+                           th:value="${companyEmail}" placeholder="Email Address" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber"
+                           th:value="${phoneNumber}" placeholder="Phone Number" class="form-input" pattern="\d{8}" required>
+                </div>
+            </div>
+            <!-- Third Row: Street Name and Street Number -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="streetName" class="form-label">Street Name</label>
+                    <input type="text" id="streetName" name="streetName"
+                           th:value="${streetName}" placeholder="Street Name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="streetNumber" class="form-label">Street Number</label>
+                    <input type="text" id="streetNumber" name="streetNumber"
+                           th:value="${streetNumber}" placeholder="Street Number" class="form-input" required>
+                </div>
+            </div>
+            <!-- Fourth Row: Postcode and City -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="postcode" class="form-label">Postcode</label>
+                    <input type="text" id="postcode" name="postcode"
+                           th:value="${postcode}" placeholder="Postcode" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" id="city" name="city"
+                           th:value="${city}" placeholder="City" class="form-input" required>
+                </div>
+            </div>
+            <input type="hidden" name="token" th:value="${token}">
+            <!-- Submit Button -->
+            <button type="submit" class="btn submit-btn">Update Company</button>
+        </form>
+    </div>
+
+
+
+
+</div>
+
+<!-- Footer -->
+<footer class="user-footer">
+    <p>&copy; 2025 Aalborg University. All Rights Reserved</p>
+    <p><a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Cookie Policy</a></p>
+</footer>
+
+
+</body>
+<style>
+    body {
+        background-image: url('/backgroundUndA/background_final.png');
+        background-repeat: repeat;
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+
+</html>

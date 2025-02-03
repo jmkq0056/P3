@@ -1,0 +1,435 @@
+/* Import Google Fonts stylesheet */
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/add.css');
+
+/* Specify font-family for body */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto; /* Add some top and bottom margin */
+}
+
+.form-group {
+    margin-bottom: 30px; /* Increase margin bottom for more spacing */
+}
+
+.btn {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 12px 24px; /* Increase padding for larger buttons */
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+.list-group-item {
+    padding: 12px 20px; /* Increase padding for list items */
+    margin-bottom: 15px; /* Increase margin bottom for more spacing */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.list-group-item:hover {
+    background-color: #f0f0f0;
+}
+
+.expense-details {
+    margin-bottom: 30px; /* Increase margin bottom for more spacing */
+}
+
+.expense-details h2 {
+    font-size: 24px;
+    margin-bottom: 15px; /* Increase margin bottom for more spacing */
+}
+
+.purchase-list {
+    list-style: none;
+    padding: 0;
+}
+
+.purchase-list .list-item {
+    margin-bottom: 15px; /* Increase margin bottom for more spacing */
+}
+
+.purchase-list .list-item span {
+    margin-right: 15px; /* Increase margin right for more spacing */
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px; /* Increase padding for more spacing */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px; /* Decrease margin bottom for labels */
+}
+
+.form-control {
+    width: 25%; /* Make form controls full width */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: green;
+}
+
+.btn-primary:hover {
+    opacity: 0.6;
+}
+
+.warning, .exceeded {
+    color: #F48401;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+.not-exceeded {
+    color: #003B81;
+}
+
+.progress {
+    height: 30px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background-color: #d9cece;
+    border-radius: 15px;
+}
+
+
+.progress-bar-exceeded {
+    height: 30px;
+    background-color: orange;
+    width: 100%;
+}
+
+.progress-bar-not-exceeded {
+    height: 30px;
+    background-color: #003B81;
+    width: 100%;
+}
+
+.expense-item, .goal-item {
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(204, 204, 204, 0);
+    border-radius: 5px;
+    background-color: rgba(249, 249, 249, 0);
+}
+
+/* Style expense links */
+.expense-name, .goal-name {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: xx-large;
+    text-align: left;
+}
+
+.expense-name a {
+    text-decoration: none;
+}
+
+.progress-status-container {
+    width: 100%;
+    text-align: right;
+}
+
+#progress-status-text {
+    padding: 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: x-large;
+    text-align: right;
+}
+
+
+.progress-wrapper, .main-goal-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.progress-status.right-aligned {
+    text-align: right;
+}
+
+.progress-status.right-aligned span {
+    white-space: nowrap; /* Prevent line breaks */
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: x-large;
+    text-align: left;
+}
+
+
+.expense-status, .goal-status {
+
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: x-large;
+    text-align: left;
+}
+
+.scrollable-content {
+    overflow-y: auto;
+    max-height: 650px;
+    max-width: 55%;
+    border: 2px solid rgba(51, 51, 51, 0.33);
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.scrollable-content-wishlist {
+    margin-left: 30px;
+    margin-bottom: 30px;
+    overflow-y: auto;
+    max-height: 650px;
+    max-width: 55%;
+    border: 2px solid rgba(51, 51, 51, 0.33);
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.centered-button {
+    text-align: center;
+    margin-top: 20px; /* Adjust margin as needed */
+
+}
+
+.create-button {
+    text-decoration: none;
+    width: 120%;
+    padding: 15px;
+    border-radius: 25px;
+    font-size: x-large;
+    color: white;
+    height: 100px;
+    background-color: #003B81;
+}
+
+.create-button:hover {
+    opacity: 0.6;
+}
+
+.list-unstyled {
+    padding: 0;
+    list-style-type: none;
+}
+
+.title-weekly {
+    font-size: x-large;
+    margin-left: 30px;
+    margin-top: 100px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85px;
+    text-align: center;
+    max-width: 25%;
+    color: #ffffff; /* White color for text */
+    background-color:#003b81;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5); /* Add shadow */
+}
+
+
+.row {
+    padding-left: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.scrollable-content, .week-content {
+    flex: 1;
+    margin-right: 50px; /* Adjust margin as needed */
+
+}
+
+.week-content {
+    padding: 0;
+    padding-bottom: 20px;
+    margin-left: 50px;
+    border-radius: 15px;
+    text-align: center;
+    align-content: center;
+    background: #003b81;
+    color: #ffffff;
+    height: 30%;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5); /* Add shadow */
+}
+
+
+.week-number {
+    text-align: center; /* Center the text */
+    font-size: 100px;
+    display: inline-block; /* Make the text fill the container's width */
+    width: 100%; /* Set the width to 100% */
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+.date-range {
+    font-size: 35px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.navigation-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    width: 55%;
+}
+
+.navigation-icons {
+    display: flex;
+
+}
+
+.navigation-icons a {
+    margin-right: 10px; /* Adjust the spacing between icons */
+}
+
+.navigation-icons a:last-child {
+    margin-right: 0; /* Remove margin from the last icon */
+}
+
+.navigation-icons img {
+    border-radius: 15px;
+    padding: 30px;
+    width: 36px; /* Adjust the width of the icons */
+    height: 36px; /* Adjust the height of the icons */
+    background: #003B81;
+}
+
+
+.navigation-icons img:hover {
+    opacity: 0.6; /* Reduce opacity on hover */
+}
+
+
+.list {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.list li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.list li:hover, .main-goal-content:hover {
+    background-color: #e9e9e9;
+}
+
+.sortable-container {
+    width: 60%;
+    margin: 20px auto;
+}
+
+.sortable-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.drag-handle {
+    margin-left: 10px;
+    width: 24px;
+    height: 24px;
+
+}
+
+.necessary-goals.list, .unnecessary-goals.list {
+    border: none;
+}
+
+.goal-progress-bar-container {
+    /* Background color of the progress bar container */
+    height: 40px; /* Height of the progress bar */
+    width: 100%;
+    text-align: right;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background-color: #d9cece;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+
+}
+
+.goal-progress-bar {
+
+    background-color: #003B81; /* Color of the progress bar representing the saved amount */
+    margin-top: 5px; /* Adjust as needed */
+    height: 50px;
+}
+
+.main-goal-content {
+    padding: 20px 20px;
+    margin: 30px 30px 30px;
+    overflow-y: auto;
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+.goal.archived-by{
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.goal.archived-date{
+    text-decoration: none;
+    color: #003B81;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.implement-logic{
+    font-style: italic;
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+    font-size: 30px;
+}
+.scrollable-content {
+    overflow-y: auto; /* Add vertical scrollbar when content exceeds height */
+    max-height: 500px; /* Set maximum height to enable scrolling */
+    background-color: white; /* Set background color to white */
+    padding: 10px; /* Optional: Add padding for better readability */
+    border: none; /* Set border to none to make the box borderless */
+}
+
+.ui-datepicker-calendar {
+    background-color: red; /*Names of weekdays?*/
+}
+

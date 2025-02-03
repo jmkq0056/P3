@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order - Sylles Fabrik</title>
+    <link rel="stylesheet" type="text/css" href="/css/place-order.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="/js/place-order.js"></script>
+</head>
+<body>
+<!-- Include Navigation Menu -->
+<div th:insert="~{navbar :: body}"></div>
+<!-- Top Right View Cart Button -->
+<!-- Top Right View Cart Button Form -->
+<div class="top-right-container">
+    <form action="/user/view-cart" method="get" style="display: inline;">
+        <input type="hidden" name="token" th:value="${token}">
+        <button type="submit" class="view-cart-button">
+            <i class="fas fa-shopping-cart"></i> View Cart
+        </button>
+    </form>
+</div>
+
+<div class="place-order-container">
+    <div class="logo-container">
+        <img src="/sylle_logo/sylle_logo2.png" alt="Sylles Fabrik Logo" class="logo">
+    </div>
+
+
+    <h1 class="welcome-message">Place Your Order</h1>
+    <div class="error-message" th:if="${error}" style="text-align: center;">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
+    <div class="success-message" th:if="${message}" style="text-align: center;">
+        <p th:text="${message}" style="color: green;"></p>
+    </div>
+    <div id="menuSection" class="collapsible-section">
+        <h2>Ice Cream Menu</h2>
+        <h3 style="text-align: center;">Prices are excluding VAT</h3>
+        <table class="company-table styled-table">
+            <thead>
+            <tr>
+                <th>Variant</th>
+                <th>More Info</th>
+                <th>Amount In Stock</th>
+                <th>Price</th>
+                <th>Availability</th>
+                <th>Item Price</th>
+                <th>Add To Cart</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${menuItems}">
+                <td th:text="${item.title}">Title</td>
+                <td>
+                    <button type="button" class="link-button"
+                            th:data-allergens="${item.allergens}"
+                            th:data-description="${item.description}"
+                            th:data-images="${item.imagePaths}"
+                            onclick="showInfo(this)"
+                            style="display: block; width: 100%; text-align: center; padding: 10px;">
+                        Show More Info
+                    </button>
+
+
+                </td>
+                <td>
+                    <!-- Use data attributes to bind necessary data in Thymeleaf style -->
+                    <input type="number" min="0" max="${item.stockInLiters}" placeholder="0"
+                           th:data-price="${item.pricePerLiter}"
+                           th:data-quantity="${item.quantity}"
+                           th:data-id="${item.id}"
+                           oninput="calculatePrice(this)"
+                           style="width: 50px; border-radius: 50px;">
+                    <!-- Display available stock next to the input field in liters (L) -->
+                    / <span th:text="${item.quantity}">Available Stock</span>
+                </td>
+                <td th:text="${item.pricePerLiter} + ' DKK'">Price</td> <!-- Display liter price with DKK -->
+                <td>
+                    <!-- Display availability status with check or cross -->
+                    <span th:if="${item.isAvailable}" style="color: green;">&#10003;</span>
+                    <span th:if="${!item.isAvailable}" style="color: red;">&#10007;</span>
+                </td>
+                <!-- Use data-total-price to identify the element for updating without using id -->
+                <td data-total-price>0.00 DKK</td>
+                <td>
+                    <!-- Form to add item to cart -->
+                    <form action="/user/add-to-cart" method="post">
+                        <input type="hidden" name="menuItemId" th:value="${item.id}">
+                        <input type="hidden" name="token" th:value="${token}">
+                        <!-- Hidden input for quantity; set via JavaScript before form submission -->
+                        <input type="hidden" name="desiredQuantity" value="0" class="quantity-input">
+
+                        <button type="submit" class="icon-button add-to-cart-button" style="background: green" onclick="setQuantity(this)">
+                            <i class="fas fa-cart-plus"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Item Information</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div id="infoContent">
+                <p id="itemDetails"></p>
+
+                <!-- Slideshow Container -->
+                <div id="slideshowContainer" class="slideshow-container">
+                    <!-- Images will be dynamically inserted here -->
+                </div>
+                <div id="dotsContainer" class="dots-container">
+                    <!-- Dots for navigation -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="user-footer">
+    <p>&copy; 2025 Aalborg University. All Rights Reserved</p>
+    <p><a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Cookie Policy</a></p>
+</footer>
+
+<script>
+    function setQuantity(button) {
+        const form = button.closest("form");
+        const quantityInput = form.querySelector(".quantity-input");
+        const userQuantity = form.closest("tr").querySelector("input[type='number']").value;
+        quantityInput.value = userQuantity || 0;
+    }
+</script>
+</body>
+<style>
+    body {
+        background-image: url('/backgroundUndA/background_final.png');
+        background-repeat: repeat;
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+
+</html>

@@ -1,0 +1,860 @@
+
+
+html, body {
+    height: 100%; /* Ensures full viewport height */
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+    background-repeat: repeat; /* Repeat the image to cover the background */
+    background-size: cover; /* Scale the image to cover the entire viewport */
+    background-position: center; /* Center the background image */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* General Styling for h2 Elements */
+/* General Styling for h2 Elements */
+h2 {
+    font-size: 2em; /* Larger font size for better visibility */
+    font-weight: bold;
+    text-align: center; /* Center align all h2 elements */
+    color: #0077B6; /* Match the color theme */
+
+    letter-spacing: 2px; /* Add some spacing between letters */
+    margin-bottom: 20px; /* Add space below */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effects */
+    position: relative;
+}
+
+/* Add Underline Effect */
+h2::after {
+    content: '';
+    display: block;
+    width: 50%; /* Adjust width for the underline */
+    height: 4px; /* Thickness of the underline */
+    background-color: #0077B6; /* Same color as the text */
+    margin: 10px auto 0; /* Center align and add spacing */
+    transition: width 0.3s ease; /* Smooth animation on hover */
+}
+
+/* Hover Effects */
+h2:hover {
+    color: #005f8e; /* Slightly darker shade on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+h2:hover::after {
+    width: 70%; /* Extend underline width */
+}
+
+/* Optional Glow Animation */
+h2.glow-effect:hover {
+    text-shadow: 0 0 10px rgba(0, 119, 182, 0.8), 0 0 20px rgba(0, 119, 182, 0.5); /* Subtle glowing effect */
+}
+
+
+
+
+/* Admin Page Container */
+.admin-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px; /* Reduced padding to align with user page */
+    background-color: rgba(255, 255, 255, 0);
+    flex: 1; /* Takes up remaining space, pushing the footer to the bottom if content is short */
+    margin: 0 ; /* Center align */
+}
+
+/* Header Styling */
+.admin-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-header .logo {
+    width: 400px;
+    margin-bottom: 20px;
+}
+
+.admin-header h1 {
+    font-size: 2.5em;
+    color: #0077B6;
+}
+
+.admin-header p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+/* Default Styling */
+.button-row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1400px;
+    margin: 40px auto;
+}
+
+/* Mobile Responsive Styling */
+@media (max-width: 768px) {
+    .button-row {
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center;   /* Center the buttons */
+        gap: 20px;             /* Add spacing between buttons */
+    }
+}
+
+
+.btn.toggle-btn {
+    background-color: #0077b6;
+    color: white;
+    font-size: medium;
+    padding: 15px 15px;
+    border: none;
+    border-radius: 50px;
+    text-align: center;
+    text-decoration: none; /* Remove underline */
+    display: inline-block;
+}
+
+.btn.toggle-btn i {
+    margin-right: 8px;
+}
+
+.btn.toggle-btn:hover {
+    background-color: #005f8d;
+}
+
+/* Collapsible Section Styling */
+.collapsible-section {
+    align-items: center;
+    display: none;
+    text-align: center;
+    width: 85%;
+
+    margin: 20px auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.input-field {
+    all: unset;
+    text-align: left;
+    width: 94%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    background: white;
+}
+.input-field:focus {
+    border-color: #0077B6; /* Blue border when focused */
+    box-shadow: 0 0 8px rgba(0, 119, 182, 0.5); /* Soft blue glow effect */
+    outline: none; /* Remove default focus outline */
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #0077B6;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #005f8d;
+}
+/* Default Table Styling */
+.styled-table {
+    width: 100%;
+    border-collapse: separate; /* Allows for spacing between rows and columns */
+    margin-top: 20px;
+    border-radius: 50px; /* Rounder corners for the table */
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-spacing: 15px; /* Adds space between rows and columns */
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 20px; /* Increased padding for a cleaner look */
+    text-align: center; /* Center text in both header and cells */
+    border: none; /* Remove default borders */
+    background-color: white; /* Consistent background for cells */
+    border-radius: 50px; /* Rounded cells */
+}
+
+.styled-table th {
+    background-color: #0077B6;
+    color: white;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease; /* Hover effect for headers */
+}
+
+.styled-table td {
+    font-size: 14px;
+    color: #333;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Add animation for hover */
+}
+
+.styled-table th:hover {
+    background-color: #005f8e; /* Slightly darker blue on hover */
+}
+
+.styled-table td:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+    background-color: #f5f5f5; /* Subtle background change */
+}
+
+/* Responsive Table Styling for Mobile */
+@media (max-width: 768px) {
+    .styled-table {
+        display: block;
+        overflow-x: auto; /* Enable horizontal scrolling */
+        white-space: nowrap; /* Prevent table cells from wrapping */
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 15px; /* Adjust padding for smaller screens */
+        font-size: 12px; /* Reduce font size */
+    }
+}
+
+/* For Extremely Small Screens */
+@media (max-width: 480px) {
+    .styled-table {
+        font-size: 12px; /* Further reduce font size */
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 10px; /* Reduce padding further */
+    }
+}
+
+
+/* Delete Button Styling */
+.btn.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Availability Icons Styling */
+.styled-table td span {
+    font-size: 1.5em; /* Make icons slightly larger for visibility */
+    display: inline-block;
+    padding: 5px; /* Add some spacing around the icons */
+    color: #0077B6; /* Match the blue theme */
+    background-color: #e6f7ff; /* Light background for contrast */
+    border-radius: 50%; /* Make icons circular */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Hover effect */
+}
+
+.styled-table td span:hover {
+    transform: scale(1.2); /* Slight zoom effect on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* Footer Styling */
+.admin-footer {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #0077B6;
+    color: white;
+    margin-top: auto;
+}
+
+.admin-footer p {
+    margin-bottom: 10px;
+}
+
+.admin-footer a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.admin-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Icon Button Styling */
+.icon-button {
+    background-color: #0077B6;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 0;
+    transition: background-color 0.3s ease;
+}
+
+.icon-button:hover {
+    background-color: #005f8d;
+}
+.icon-button.disapprove-button {
+    background-color: red;
+    padding-left: 13px;
+    padding-right: 13px;
+    color: white;
+
+}
+
+ i {
+    font-size: 1rem;
+}
+/* Default Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000; /* Increased z-index for better overlay */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay for better focus */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fff; /* Changed to pure white for a cleaner look */
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the modal */
+    padding: 30px; /* Increased padding for better spacing */
+    border: none; /* Removed border for a cleaner appearance */
+    width: 80%;
+    max-width: 500px;
+    max-height: 80%; /* Ensure modal doesn't exceed 80% of the viewport height */
+    overflow-y: auto; /* Enable vertical scrolling for overflowing content */
+    border-radius: 10px; /* Slightly more rounded corners */
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+}
+
+/* Modal Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Added spacing below header */
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 24px; /* Increased font size for better readability */
+    color: #333; /* Darker color for better contrast */
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.close:hover,
+.close:focus {
+    color: #000; /* Darker color on hover for visual feedback */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Modal Content Text */
+#infoContent {
+    text-align: left; /* Ensures modal content is left-aligned */
+    margin-top: 20px; /* Adds spacing after the header */
+    font-size: 16px; /* Standard font size */
+    color: #555; /* Softer text color for readability */
+    line-height: 1.6; /* Improved line spacing */
+}
+
+/* Responsive Modal for Smaller Screens */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%; /* Increase width for smaller screens */
+        padding: 20px; /* Adjust padding */
+        max-height: 90%; /* Increase height allowance */
+    }
+
+    .modal-header {
+        flex-direction: column; /* Stack header content */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .modal-header h2 {
+        font-size: 22px; /* Adjust header font size */
+    }
+
+    .close {
+        font-size: 26px; /* Adjust close button size */
+    }
+}
+
+/* For Extremely Small Screens */
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%; /* Maximize width on small screens */
+        padding: 15px; /* Reduce padding further */
+        max-height: 90%; /* Maintain height limit */
+    }
+
+    .modal-header h2 {
+        font-size: 20px; /* Further reduce header font size */
+    }
+
+    .close {
+        font-size: 24px; /* Adjust close button size */
+    }
+
+    #infoContent {
+        font-size: 14px; /* Adjust content font size */
+    }
+}
+
+
+.action-buttons {
+
+     justify-content: space-between; /* Space between buttons */
+     gap: 5px; /* Space between each button */
+     align-items: center; /* Vertically align the buttons */
+ }
+
+
+
+/* Styling for the delivery date input (same as input-field) */
+.modal input[type="date"] {
+    all: unset; /* Removes all default date input styles */
+    text-align: center;
+    width: 94%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    color: #333;
+}
+
+/* Fix for spacing issue with the calendar icon */
+.modal input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: transparent; /* Make the calendar icon transparent */
+    cursor: pointer;
+}
+
+/* Focus styling for date input */
+.modal input[type="date"]:focus {
+    border-color: #0077B6; /* Blue border when focused */
+    box-shadow: 0 0 8px rgba(0, 119, 182, 0.5); /* Soft blue glow effect */
+    outline: none; /* Remove default focus outline */
+}
+
+/* General focus styling for other inputs */
+.input:focus {
+    border-color: #0077B6; /* Blue border when focused */
+    box-shadow: 0 0 8px rgba(0, 119, 182, 0.5); /* Soft blue glow effect */
+    outline: none; /* Remove default focus outline */
+}
+
+/* Style for Textarea inside the modal */
+#disapprovalReason {
+    width: 94%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+    resize: vertical;  /* Allows the user to resize the textarea vertically */
+    background-color: #fff;  /* White background for better readability */
+    color: #333;  /* Dark text color for contrast */
+}
+
+/* Focus styling for Textarea */
+#disapprovalReason:focus {
+    border-color: #0077B6;  /* Change border color when focused */
+    box-shadow: 0 0 8px rgba(0, 119, 182, 0.5);  /* Soft blue glow effect */
+    outline: none;  /* Remove default outline */
+}
+
+/* Optional: Styling for placeholder text */
+#disapprovalReason::placeholder {
+    color: #aaa;  /* Lighter color for placeholder text */
+    font-style: italic;
+}
+/* Slideshow container */
+.slideshow-container {
+    width: 300px;
+    height: 200px; /* Fixed dimensions for images */
+    position: relative;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #f9f9f9;
+}
+
+/* Images inside slideshow */
+.slideshow-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Dots for navigation */
+.dots-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #0077B6;
+}
+/* Hide the default file input */
+input[type="file"] {
+    display: none;
+}
+
+/* Style the custom file upload button */
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #0077B6; /* Blue background */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the button */
+.custom-file-upload:hover {
+    background-color: #005f8d; /* Darker blue */
+}
+
+/* Style the label to align text with the file name */
+.file-label {
+    font-size: 14px;
+    margin-left: 10px;
+    color: #333;
+    display: inline-block;
+    vertical-align: middle;
+}
+/* Logout container */
+.top-left-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+/* Style for the View Basket (Logout) button */
+.logout-button {
+    background-color: #0077B6; /* Transparent background */
+    color: white; /* Text color */
+    padding: 10px 15px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s, transform 0.3s;
+    border: 2px solid transparent; /* No border */
+    margin-top: 50px;
+}
+
+.logout-button i {
+    margin-right: 8px;
+    font-size: 18px;
+    color: white; /* Dark grey-blackish color for the icon */
+}
+
+.logout-button:hover {
+    transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+.logout-button i:hover {
+    color: #005f8d; /* Icon changes to a slightly lighter grey-black on hover */
+}
+/* Logo Section */
+.logo-container {
+    margin-top: 20px;
+}
+
+.logo {
+    width: 400px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+/* General Styling for #addMenuItemForm Inputs */
+#addMenuItemForm input {
+    width: 48%; /* Two inputs will fit in one row */
+    padding: 10px; /* Padding for better input visibility */
+    margin: 10px 1%; /* Space between inputs */
+    border: 1px solid #0077B6; /* Border color matching theme */
+    border-radius: 50px; /* Rounded corners for a modern look */
+    font-size: 14px; /* Text size */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+    transition: all 0.3s ease; /* Smooth hover and focus effects */
+    outline: none; /* Remove default outline */
+}
+
+/* Hover Effect for Inputs */
+#addMenuItemForm input:hover {
+    border-color: #005f8e; /* Slightly darker border on hover */
+    box-shadow: 0 0 8px rgba(0, 119, 182, 0.2); /* Add glow effect */
+}
+
+/* Focus Effect for Inputs */
+#addMenuItemForm input:focus {
+    border-color: #005f8e; /* Highlighted border on focus */
+    box-shadow: 0 0 12px rgba(0, 119, 182, 0.4); /* Stronger glow on focus */
+    background-color: #f5faff; /* Light blue background on focus */
+}
+
+/* Input Row Styling */
+#addMenuItemForm .input-row {
+    display: flex; /* Flexbox for horizontal alignment */
+    justify-content: space-between; /* Space between inputs */
+    align-items: center; /* Vertical alignment */
+    margin-bottom: 15px; /* Space between rows */
+}
+
+/* Button Styling for Add Menu Item Form */
+#addMenuItemForm .btn.submit-btn {
+    background-color: #0077B6; /* Button background color */
+    color: white; /* Button text color */
+    padding: 10px 20px; /* Padding for the button */
+    border: none; /* No border */
+    border-radius: 50px; /* Rounded corners to match inputs */
+    font-size: 16px; /* Font size for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth hover effect */
+    width: 48%; /* Adjust width for a clean look */
+    text-align: center; /* Center align text */
+}
+
+/* Hover Effect for Button */
+#addMenuItemForm .btn.submit-btn:hover {
+    background-color: #005f8e; /* Darker background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+/* Styling for Inputs in Create a New Company Form */
+#formModal input {
+    width: 48%; /* Two inputs in one row */
+    padding: 10px;
+    margin: 10px 1%;
+    border: 1px solid #0077B6;
+    border-radius: 50px; /* Rounded corners for a cohesive look */
+    font-size: 14px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Hover Effect for Inputs */
+#formModal input:hover {
+    border-color: #005f8e;
+    box-shadow: 0 0 8px rgba(0, 119, 182, 0.2);
+}
+
+/* Focus Effect for Inputs */
+#formModal input:focus {
+    border-color: #005f8e;
+    box-shadow: 0 0 12px rgba(0, 119, 182, 0.4);
+    background-color: #f5faff;
+}
+
+/* Row Layout for Create a New Company */
+#formModal .input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Button Styling for Create a New Company Form */
+#formModal .btn.submit-btn {
+    background-color: #0077B6;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px; /* Rounded corners to match inputs */
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 48%;
+    text-align: center;
+}
+
+/* Hover Effect for Submit Button */
+#formModal .btn.submit-btn:hover {
+    background-color: #005f8e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}/* Container Styles */
+.form-container {
+    margin: 0 auto;
+    padding: 30px;
+    max-width: 700px; /* Expanded to fit two inputs in a row */
+    background: #ffffff;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+/* Title Styles */
+.form-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+/* Form Row Styles */
+.form-row {
+    display: flex;
+    justify-content: center; /* Center the row horizontally */
+    gap: 20px; /* Space between inputs in a row */
+    margin-bottom: 20px; /* Space between rows */
+}
+
+/* Form Group Styles */
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Keep label and input aligned to the left */
+    max-width: 200px; /* Optional: Limit the width of individual inputs */
+}
+
+/* Label Styles */
+.form-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* Input Styles */
+.form-input {
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #0077B6; /* Border color matching theme */
+    border-radius: 50px;
+    width: 100%; /* Ensure input stretches to match the form group */
+    max-width: 200px; /* Optional: Keep inputs visually consistent */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+
+}
+
+.form-input:focus {
+    border-color: #005f8e;
+    box-shadow: 0 0 12px rgba(0, 119, 182, 0.4);
+    background-color: #f5faff;
+}
+/* Submit Button */
+.btn.submit-btn {
+    border-radius: 50px;
+    max-width: 300px;
+    transition: background 0.3s ease;
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column; /* Stack inputs vertically on smaller screens */
+        align-items: center; /* Center-align stacked inputs */
+    }
+
+    .form-container {
+        padding: 20px;
+    }
+
+    .form-title {
+        font-size: 22px;
+    }
+
+    .form-input {
+        font-size: 14px;
+    }
+
+    .btn.submit-btn {
+        font-size: 14px;
+    }
+}
+/* Blue bar at the top */
+.top-bar {
+    background-color: #0077B6; /* Blue color */
+    height: 50px; /* Adjust height as needed */
+    width: 100%; /* Full-width bar */
+    position: fixed; /* Sticks to the top */
+    top: 0; /* Align to top */
+    left: 0; /* Align to the left */
+    z-index: 1000; /* Ensure it stays above other content */
+    display: flex; /* For alignment */
+    align-items: center; /* Center items vertically */
+    padding: 0 20px; /* Optional: Add padding for inner content */
+    color: white; /* White text for contrast */
+    font-family: Arial, sans-serif; /* Font style */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for a clean look */
+}

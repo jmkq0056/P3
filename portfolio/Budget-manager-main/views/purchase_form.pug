@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    div.content
+        div.row.center
+            div.popup
+                h1.popup-title= title
+                if (expense)
+                    p (#{expense.spent}/#{expense.allocated})
+                form(method='post', action=action)
+                    div.form-group
+                        label.popup-label(for='date') Weekday:
+                        select#date.popup-input(name='date' required)
+                            each day, index in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                                if purchase
+                                    option(value=week[index], selected= week[index].setHours(0, 0, 0, 0) === purchase.date.setHours(0, 0, 0, 0))= day
+                                else
+                                    option(value=week[index], selected= today.setHours(0, 0, 0, 0) === week[index].setHours(0, 0, 0, 0))= day
+                    div.form-group
+                        label.popup-label(for='spent') Spent Amount:
+                        input#spent.popup-input(type='number', name= 'spent', placeholder='Enter spent amount', value=spent, required)
+                    div.row.space-around
+                        button.btn(type='submit') Confirm
+                        a.btn(href=(expense ? `/home/expense/${expense._id}` : '/home')) Cancel

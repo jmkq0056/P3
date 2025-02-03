@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Basket - Sylles Fabrik</title>
+    <link rel="stylesheet" type="text/css" href="/css/place-order.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="top-left-container">
+    <form action="/user/logout" method="post" style="display: inline;">
+        <input type="hidden" name="token" th:value="${token}">
+        <button type="submit" class="logout-button">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+
+        <!-- Go Back Button -->
+        <button type="button" onclick="history.back()" class="back-button">
+            <i class="fas fa-arrow-left"></i> Go Back
+        </button>
+    </form>
+</div>
+<div class="place-order-container">
+    <div class="logo-container">
+        <img src="/sylle_logo/sylle_logo2.png" alt="Sylles Fabrik Logo" class="logo">
+    </div>
+
+    <h1 class="welcome-message">Your Cart, <span th:text="${companyName}">Company Name</span></h1>
+    <div class="error-message" th:if="${error}" style="text-align: center;">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
+    <div class="success-message" th:if="${message}" style="text-align: center;">
+        <p th:text="${message}" style="color: green;"></p>
+    </div>
+    <div id="menuSection" class="collapsible-section">
+        <h2>Items in Your Cart</h2>
+        <table class="company-table styled-table" id="basketItems">
+            <thead>
+            <tr>
+                <th>Variant</th>
+                <th>Amount In Stock</th>
+                <th>Price</th>
+                <th>Total Price</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cartItem : ${cartItems}">
+                <td th:text="${cartItem.menuItem.title}">Flavour</td>
+                <td th:text="${cartItem.desiredQuantity}">Quantity</td>
+                <td th:text="${cartItem.menuItem.pricePerLiter} + ' DKK'">Unit Price</td>
+                <td th:data-total-cost="${cartItem.totalCost}" th:text="${cartItem.totalCost} + ' DKK'">Item Price</td>
+                <td>
+                    <form action="/user/remove-from-cart" method="post">
+                        <input type="hidden" name="cartItemId" th:value="${cartItem.id}">
+                        <input type="hidden" name="token" th:value="${token}">
+                        <button type="submit" class="icon-button delete-button" style ="background: red; ">
+                            <i class="fas fa-trash-alt"></i> Remove
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Display Total Price -->
+        <h3>Total Price: <span id="totalPrice">0.00 DKK</span></h3>
+
+        <!-- Proceed to Checkout Form -->
+        <form action="/user/checkout" method="post">
+            <input type="hidden" name="token" th:value="${token}">
+            <button type="submit" class="checkout-button">Proceed to Checkout</button>
+        </form>
+    </div>
+</div>
+
+<footer class="user-footer">
+    <p>&copy; 2025 Aalborg University. All Rights Reserved</p>
+    <p><a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Cookie Policy</a></p>
+</footer>
+
+<!-- JavaScript to calculate the total price -->
+<script>
+    function calculateTotalPrice() {
+        const rows = document.querySelectorAll("#basketItems tbody tr");
+        let totalPrice = 0;
+
+        rows.forEach(row => {
+            // Get the total cost for each item from the `data-total-cost` attribute
+            const totalCostText = row.querySelector("td[data-total-cost]").getAttribute("data-total-cost");
+            const itemCost = parseFloat(totalCostText);
+
+            console.log("Item Cost:", itemCost);  // Debugging log for each item cost
+
+            if (!isNaN(itemCost)) {
+                totalPrice += itemCost;
+            }
+        });
+
+        console.log("Total Price Calculated:", totalPrice);  // Debugging log for total price
+
+        // Update the total price display
+        document.getElementById("totalPrice").innerText = totalPrice.toFixed(2) + " DKK";
+    }
+
+    // Call the function to initialize the total price on page load
+    window.onload = calculateTotalPrice;
+</script>
+
+</body>
+<style>
+    body {
+        background-image: url('/backgroundUndA/background_final.png');
+        background-repeat: repeat;
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+
+</html>

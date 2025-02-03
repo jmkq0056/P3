@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Home - Sylles Fabrik</title>
+    <link rel="stylesheet" type="text/css" href="/css/user-home.css/">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<!-- Include Navigation Menu -->
+<div th:insert="~{navbar :: body}"></div>
+
+<!-- Main Container for the User Home Page -->
+<div class="user-home-container">
+
+    <!-- Logo at the top -->
+    <div class="logo-container">
+        <img src="/sylle_logo/sylle_logo2.png" alt="Sylles Fabrik Logo" class="logo">
+    </div>
+
+    <!-- Welcome message -->
+    <h1 class="welcome-message">Welcome <span th:text="${companyName}">Company Name!</span></h1>
+
+    <!-- Centered links for actions -->
+    <div class="action-buttons">
+        <a th:href="@{/user/place/order(token=${token})}" class="btn link-button">Place order</a>
+        <a th:href="@{/user/order/history(token=${token})}" class="btn link-button">Order history</a>
+        <a th:href="@{/user/edit/profile(token=${token})}" class="btn link-button">Edit Profile</a>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="user-footer">
+    <p>&copy; 2025 Aalborg University. All Rights Reserved</p>
+    <p><a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Cookie Policy</a></p>
+</footer>
+
+</body>
+<style>
+    body {
+        background-image: url('/backgroundUndA/background_2.png');
+        background-repeat: repeat;
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+
+</html>

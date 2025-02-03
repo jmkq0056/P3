@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    div.content
+        div.row.center
+            div.scrollable-content
+                div.list-title
+                    h1= title
+                    a.btn.small(href='/settings') X
+
+                if error
+                    div#error.error-message= error
+                ul
+                    each income in incomes
+                        li.non-clickable
+                            span.label-name= income.name
+                            div.row
+                                span.label-name= income.amount + " DKK"
+                                a.btn.small(href='/settings/income/' + income._id + '/update') Edit
+                                a.btn.small(href='/settings/income/' + income._id + '/delete') Delete
+                div.center
+                    a.btn(href='/settings/income/create') Add New Income

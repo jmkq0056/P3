@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    div.content
+        div.row.center
+            div.popup
+                h1.popup-title Main Goal: #{mainGoal.name}
+                    h2 Available: #{remainingAvailable}
+                    form(method='post', action= action)
+                        div.form-group
+                            label.popup-label(for='name') Name:
+                            input.popup-input(type='text', id='name', name='name', value=mainGoal.name, required)
+
+                        div.form-group
+                            label.popup-label(for='allocated') Allowance:
+                            input.popup-input(type='number', id='allocated', name='allocated', value=mainGoal.allocated, required)
+                        div.row.space-around
+                            button.btn(type='submit') Confirm
+                            a.btn(href='/settings/') Cancel

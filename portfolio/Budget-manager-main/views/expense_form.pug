@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    div.content
+        div.row.center
+            div.popup
+                h1.popup-title= title
+
+                h2 Available amount #{remainingAvailable}
+                    form(method='post', action= action, oninput='warningMessages()')
+                        div.form-group
+                            label.popup-label(for='name') Name:
+                            input.popup-input(type='text', id='name', name='name', value=(expense && expense.name) ? expense.name : '', required)
+
+                        div.form-group
+                            label.popup-label(for='allocated') Allowance:
+                            input.popup-input(type='number', id='allocated', name='allocated', value=(expense && expense.allocated) ? expense.allocated: '', required)
+
+                        div#overAllocatedWeekly.error-message(style='display:none; color:orange; margin-top: 5px; font-size: 20px;') You're exceeding your weekly budget
+
+                        if error
+                            div#error.error-message= error
+
+                        div.row.space-around
+                            button.btn(type='submit') Confirm
+                            a.btn(href='/settings/') Cancel
+
+    script.
+        function warningMessages() {
+            const intendedAllocate = document.getElementById('allocated').value;
+            const overAllocatedWeekly = document.getElementById('overAllocatedWeekly');
+            const availableWeekly = #{availableWeekly};
+
+            if (intendedAllocate > availableWeekly) {
+                overAllocatedWeekly.style.display = 'block';
+                return false;
+            } else {
+                overAllocatedWeekly.style.display = 'none';
+                return true;
+            }
+        }

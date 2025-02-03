@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sylles Fabrik - Forget Passcode</title>
+  <link rel="stylesheet" type="text/css" href="/css/forgot-password.css">
+</head>
+<body class="login-page">
+<div class="login-container">
+  <!-- Company logo -->
+  <img src="/sylle_logo/sylle_logo2.png" alt="Sylles Fabrik Logo" class="logo">
+
+  <!-- Forget Passcode Form -->
+  <div class="login-form">
+    <!-- Display success or error messages here -->
+    <div class="message-container">
+      <p th:if="${message}" th:text="${message}" class="success-message"></p>
+      <p th:if="${error}" th:text="${error}" class="error-message"></p>
+    </div>
+
+    <form action="/forget/passcode/send" method="post">
+      <input type="email" name="companyEmail" placeholder="Enter Company Email..." class="input-field" required>
+      <button type="submit" class="btn resend-btn">Re-send Password</button>
+
+    </form>
+
+    <!-- Submit button -->
+    <form action="/login" method="get" class="form-inline">
+      <button type="submit" class="btn login-btn">Back To Login</button>
+    </form>
+  </div>
+
+  <!-- Contact section -->
+  <div class="contact-info">
+
+
+    <!-- Social media icons -->
+    <div class="social-media">
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/p/Sylles-Isfabrik-100064532815989/" target="_blank" aria-label="Facebook">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="30" height="30">
+      </a>
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/syllesisfabrik/" target="_blank" aria-label="Instagram">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="30" height="30">
+      </a>
+    </div>
+
+
+  </div>
+</div>
+</body>
+<style>
+  body {
+    background-image: url('/loginBackground/loginogforget.png');
+    background-repeat: repeat;
+    background-size: cover;
+    background-position: center;
+  }
+</style>
+
+</html>

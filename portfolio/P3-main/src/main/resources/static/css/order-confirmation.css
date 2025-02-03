@@ -1,0 +1,365 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+h2 {
+    font-size: 2em; /* Larger font size for better visibility */
+    font-weight: bold;
+    text-align: center; /* Center align all h2 elements */
+    color: #0077B6; /* Match the color theme */
+
+    letter-spacing: 2px; /* Add some spacing between letters */
+    margin-bottom: 20px; /* Add space below */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effects */
+    position: relative;
+}
+
+/* Add Underline Effect */
+h2::after {
+    content: '';
+    display: block;
+    width: 50%; /* Adjust width for the underline */
+    height: 4px; /* Thickness of the underline */
+    background-color: #0077B6; /* Same color as the text */
+    margin: 10px auto 0; /* Center align and add spacing */
+    transition: width 0.3s ease; /* Smooth animation on hover */
+}
+
+/* Hover Effects */
+h2:hover {
+    color: #005f8e; /* Slightly darker shade on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+h2:hover::after {
+    width: 70%; /* Extend underline width */
+}
+
+/* Optional Glow Animation */
+h2.glow-effect:hover {
+    text-shadow: 0 0 10px rgba(0, 119, 182, 0.8), 0 0 20px rgba(0, 119, 182, 0.5); /* Subtle glowing effect */
+}
+/* Main Container */
+.place-order-container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0);
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0px auto;
+    flex: 1;
+}
+
+/* Logo Section */
+.logo-container {
+    margin-top: 20px;
+}
+
+.logo {
+    width: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+/* Welcome Message */
+.welcome-message {
+    font-size: 2.5em;
+    color: #0077b6;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+/* Order Content */
+.order-content {
+    margin-top: 40px;
+}
+
+.order-content p {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form Fields */
+.input-field {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Submit Button */
+.submit-btn {
+    background-color: #0077b6;
+    color: white;
+    font-size: 18px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #005f8d;
+}
+
+/* Footer */
+.user-footer {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #0077b6;
+    color: white;
+    margin-top: auto;
+}
+
+.user-footer p {
+    margin-bottom: 10px;
+}
+
+.user-footer a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.user-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Collapsible Section Styling */
+#menuSection.collapsible-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 85%;
+
+    margin: 20px auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styling */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 15px;
+    text-align: center; /* Center text in both header and cells */
+    border-bottom: 1px solid #ddd;
+}
+
+.styled-table th {
+    background-color: #0077B6;
+    color: white;
+
+    font-size: 14px;
+}
+
+.styled-table td {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Input Field Styling within Table */
+.styled-table input[type="number"] {
+    width: 60px; /* Adjust width to make it more compact */
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Availability Icons Styling */
+.styled-table td span {
+    font-size: 1.2em;
+    display: inline-block;
+}
+
+.icon-button {
+    background-color: #0077B6;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 0;
+    transition: background-color 0.3s ease;
+}
+
+.icon-button:hover {
+    background-color: #005f8d;
+}
+
+
+.info-button i, .add-to-cart-button i{
+    font-size: 1rem;
+}
+
+/* Table Row Hover Effect */
+.styled-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+#infoContent {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Container to position the View Basket button in the top right */
+.top-right-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Style for the View Basket button */
+.view-basket-button {
+    background-color: #0077B6;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.view-basket-button i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.view-basket-button:hover {
+    background-color: #005f8d;
+}
+
+.checkout-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.checkout-button {
+    background-color: #0077B6;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.checkout-button:hover {
+    background-color: #005f8d;
+}
+
+/* Logout container */
+.top-left-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+/* Style for the View Basket (Logout) button */
+.logout-button {
+    background-color: transparent; /* Transparent background */
+    color: black; /* Text color */
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s, transform 0.3s;
+    border: 2px solid transparent; /* No border */
+}
+
+.logout-button i {
+    margin-right: 8px;
+    font-size: 18px;
+    color: #2c2c2c; /* Dark grey-blackish color for the icon */
+}
+
+.logout-button:hover {
+    transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+.logout-button i:hover {
+    color: #005f8d; /* Icon changes to a slightly lighter grey-black on hover */
+}

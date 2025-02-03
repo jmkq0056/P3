@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home - Sylles Fabrik</title>
+    <link rel="stylesheet" type="text/css" href="/css/admin-home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="/js/admin-home.js"></script>
+
+<body>
+
+<!-- Blue bar -->
+<div class="top-bar">
+
+</div>
+
+
+<!-- Page content -->
+<div style="margin-top: 60px; padding: 20px;">
+</div>
+<div class="top-left-container">
+    <form action="/user/logout" method="post" style="display: inline;">
+        <input type="hidden" name="token" th:value="${token}">
+        <button type="submit" class="logout-button">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </form>
+</div>
+<div class="admin-page">
+    <!-- Header -->
+    <header class="admin-header">
+        <img src="/sylle_logo/sylle_logo2.png" alt="Sylles Fabrik Logo" class="logo">
+        <h1>Welcome Back Sylvester!</h1>
+        <p>Manage companies and menu items below.</p>
+    </header>
+
+    <!-- Success and Error Messages -->
+    <div class="error-message" th:if="${error}" style="text-align: center;">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
+    <div class="success-message" th:if="${message}" style="text-align: center;">
+        <p th:text="${message}" style="color: green;"></p>
+    </div>
+
+    <!-- Button Row for Toggle Sections -->
+    <div class="button-row">
+        <button onclick="toggleSection('formModal')" class="btn toggle-btn">
+            <i class="fas fa-building"></i> Create New Company
+        </button>
+        <button onclick="toggleSection('companyTable')" class="btn toggle-btn">
+            <i class="fas fa-list"></i> Registered Companies
+        </button>
+        <button onclick="toggleSection('menuSection')" class="btn toggle-btn">
+            <i class="fas fa-ice-cream"></i> Stock & Menu
+        </button>
+        <button onclick="toggleSection('addMenuItemForm')" class="btn toggle-btn">
+            <i class="fas fa-plus"></i> Create New Menu Item
+        </button>
+
+        <button onclick="toggleSection('currentOrdersSection')" class="btn toggle-btn">
+            <i class="fas fa-box"></i> Current Orders
+        </button>
+
+        <button onclick="toggleSection('orderHistorySection')" class="btn toggle-btn">
+            <i class="fas fa-history"></i> Invoice & Order History
+        </button>
+
+        <button onclick="toggleSection('salesSection')" class="btn toggle-btn">
+            <i class="fas fa-dollar-sign"></i> Sales
+        </button>
+    </div>
+
+    <div id="salesSection" class="collapsible-section" style="display: none;">
+        <!-- Button Row for Weekly, Monthly, Yearly -->
+        <div class="button-row" style="display: flex; justify-content: center; gap: 10px; margin: 20px auto;">
+            <button onclick="toggleSectionSales('weeklySalesTable')" class="btn toggle-btn">
+                <i class="fas fa-calendar-week"></i> Weekly
+            </button>
+            <button onclick="toggleSectionSales('monthlySalesTable')" class="btn toggle-btn">
+                <i class="fas fa-calendar-alt"></i> Monthly
+            </button>
+            <button onclick="toggleSectionSales('yearlySalesTable')" class="btn toggle-btn">
+                <i class="fas fa-calendar"></i> Yearly
+            </button>
+        </div>
+
+        <!-- Total Sales -->
+        <div class="total-sales" style="text-align: center; margin: 20px auto;">
+            <h2>Total Sales (All Time): <span th:text="${totalSalesAllTime} + ' DKK'"></span></h2>
+        </div>
+
+        <!-- Weekly Sales Table -->
+        <div id="weeklySalesTable" class="collapsible-section" style="display: none;">
+            <h2>Weekly Sales</h2>
+            <table class="company-table styled-table">
+                <thead>
+                <tr>
+                    <th>Week</th>
+                    <th>Total Revenue</th>
+                    <th>Orders</th>
+                    <th>Top Products</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="week : ${weeklySales}">
+                    <td th:text="${week.rangeLabel}">Week 47, 2024</td>
+                    <td th:text="${week.totalRevenue} + ' DKK'">15000 DKK</td>
+                    <td th:text="${week.totalOrders}">25</td>
+                    <td>
+                        <ul>
+                            <li th:each="product : ${week.topSellingProducts}" th:text="${product}">Chocolate Ice Cream</li>
+                        </ul>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Monthly Sales Table -->
+        <div id="monthlySalesTable" class="collapsible-section" style="display: none;">
+            <h2>Monthly Sales</h2>
+            <table class="company-table styled-table">
+                <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Total Revenue</th>
+                    <th>Orders</th>
+                    <th>Top Products</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="month : ${monthlySales}">
+                    <td th:text="${month.rangeLabel}">November 2024</td>
+                    <td th:text="${month.totalRevenue} + ' DKK'">60000 DKK</td>
+                    <td th:text="${month.totalOrders}">120</td>
+                    <td>
+                        <ul>
+                            <li th:each="product : ${month.topSellingProducts}" th:text="${product}">Strawberry Ice Cream</li>
+                        </ul>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Yearly Sales Table -->
+        <div id="yearlySalesTable" class="collapsible-section" style="display: none;">
+            <h2>Yearly Sales</h2>
+            <table class="company-table styled-table">
+                <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Total Revenue</th>
+                    <th>Orders</th>
+                    <th>Top Products</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="year : ${yearlySales}">
+                    <td th:text="${year.rangeLabel}">2024</td>
+                    <td th:text="${year.totalRevenue} + ' DKK'">750000 DKK</td>
+                    <td th:text="${year.totalOrders}">2000</td>
+                    <td>
+                        <ul>
+                            <li th:each="product : ${year.topSellingProducts}" th:text="${product}">Chocolate Ice Cream</li>
+                        </ul>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Form Modal for Creating a New Company -->
+    <div id="formModal" class="collapsible-section">
+        <h2>Create a New Company</h2>
+        <form action="/admin/create-code" method="post" class="admin-form">
+            <div class="input-row">
+                <input type="text" name="companyName" placeholder="Enter Company Name..." class="input-field" required>
+                <input type="text" name="companyCVR" placeholder="Enter Company CVR Number..." class="input-field" required>
+            </div>
+            <!-- Second Row -->
+            <div class="input-row">
+                <input type="email" name="companyEmail" placeholder="Enter Company Email..." class="input-field" required>
+                <input type="text" name="phoneNumber" placeholder="Enter Phone Number..." class="input-field" required pattern="\d{8}">
+            </div>
+            <!-- Third Row -->
+            <div class="input-row">
+                <input type="text" name="streetName" placeholder="Enter Street Name..." class="input-field" required>
+                <input type="text" name="streetNumber" placeholder="Enter Street Number..." class="input-field" required>
+            </div>
+            <!-- Fourth Row -->
+            <div class="input-row">
+                <input type="text" name="postcode" placeholder="Enter Postcode..." class="input-field" required>
+                <input type="text" name="city" placeholder="Enter City..." class="input-field" required>
+            </div>
+            <input type="hidden" name="token" th:value="${token}">
+            <button type="submit" class="btn submit-btn">Create Login Code</button>
+        </form>
+    </div>
+    <!-- Current Orders Section (Collapsible) -->
+    <div id="currentOrdersSection" class="collapsible-section" style="display: none;">
+        <h2>New Orders</h2>
+        <table class="company-table styled-table">
+            <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Company CVR</th>
+                <th>Company Email</th>
+                <th>Order Date</th>
+                <th>Total Price</th>
+                <th>Items</th>
+                <th>Approve</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Loop through current orders -->
+            <tr th:each="order : ${currentOrders}">
+                <td th:text="${order.company.companyName}">Company Name</td>
+                <td th:text="${order.company.companyCVR}">Company CVR</td>
+                <td th:text="${order.company.companyEmail}">Company Email</td>
+                <td th:text="${order.formattedOrderDate}">Order Date</td>
+                <td th:text="${order.totalPrice} + ' DKK'">Total Price</td>
+                <td>
+
+                    <button type="button" class="icon-button show-items-button" onclick="showOrderData(this)">
+                        Show Items
+                        <!-- Hidden div to store the order items -->
+                        <div style="display: none;" class="order-items">
+                            <ul>
+                                <li th:each="cartItem : ${order.cartItems}">
+                                    <span th:text="${cartItem.menuItem.title}"></span>
+                                    <span th:text="${cartItem.desiredQuantity} + ' Item/s'"></span>
+                                    <span th:text="' - Item Price: ' + ${cartItem.totalCost} + ' DKK'"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </button>
+                </td>
+                <!-- Actions -->
+                <td>
+                    <div class="action-buttons">
+                        <!-- Approve Button -->
+                        <!-- Approve Button -->
+                        <button type="button" class="icon-button approve-button"
+                                th:data-order-id="${order.id}" th:data-token="${token}"
+                                onclick="openApprovalModal(this)">
+                            <i class="fas fa-check"></i>
+                        </button>
+
+                        <button type="button" class="icon-button disapprove-button"
+                                th:data-order-id="${order.id}" th:data-token="${token}"
+                                onclick="openDisapprovalModal(this)">
+                            <i class="fas fa-times"></i> <!-- Cross icon for disapproval -->
+
+                        </button>
+
+
+
+
+                    </div>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+        <button
+                type="button"
+                class="btn toggle-btn"
+                th:data-token="${token}"
+                onclick="openDeliveryListForm(this)"
+                style="display: block; margin: 20px auto;">
+            <i class="fas fa-download"></i> Download Delivery List
+        </button>
+
+
+        <!-- Second Table: Orders Ready to be Shipped -->
+        <h2>Orders Ready to Delivery</h2>
+        <table class="company-table styled-table">
+            <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Company CVR</th>
+                <th>Company Email</th>
+                <th>Order Date</th>
+                <th>Expected Delivery</th>
+                <th>Total Price</th>
+                <th>Items</th>
+                <th>Mark Ordered</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Loop through orders that are approved and ready for shipping -->
+            <tr th:each="order : ${orderReadyToBeShipped}">
+                <td th:text="${order.company.companyName}">Company Name</td>
+                <td th:text="${order.company.companyCVR}">Company CVR</td>
+                <td th:text="${order.company.companyEmail}">Company Email</td>
+                <td th:text="${order.formattedOrderDate}">Order Date</td>
+                <td th:text="${order.expectedDeliveryDate}">Expected Delivery</td>
+                <td th:text="${order.totalPrice} + ' DKK'">Total Price</td>
+                <td>
+                    <button type="button" class="icon-button show-items-button" onclick="showOrderData(this)">
+                        Show Items
+                        <!-- Hidden div to store the order items -->
+                        <div style="display: none;" class="order-items">
+                            <ul>
+                                <li th:each="cartItem : ${order.cartItems}">
+                                    <span th:text="${cartItem.menuItem.title}"></span>
+                                    <span th:text="${cartItem.desiredQuantity} + ' Item/s'"></span>
+                                    <span th:text="' - Item Price: ' + ${cartItem.totalCost} + ' DKK'"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </button>
+                </td>
+                <td>
+                    <form action="/admin/order/ship" method="post">
+                        <input type="hidden" name="orderId" th:value="${order.id}">
+                        <input type="hidden" name="token" th:value="${token}">
+                        <button type="submit" class="icon-button ship-button">
+                            <i class="fas fa-shipping-fast"></i> <!-- Ship icon -->
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="orderHistorySection" class="collapsible-section" style="display: none;">
+        <h2>Orders Ready To Invoice</h2>
+        <table class="company-table styled-table">
+            <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Company CVR</th>
+                <th>Company Email</th>
+                <th>Order Date</th>
+                <th>Expected Delivery</th>
+                <th>Delivered Date</th>
+                <th>Total Price</th>
+                <th>Items</th>
+                <th>Invoice</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Loop through orders that are approved and ready for shipping -->
+            <tr th:each="order : ${orderReadyToBeInvoiced}">
+                <td th:text="${order.company.companyName}">Company Name</td>
+                <td th:text="${order.company.companyCVR}">Company CVR</td>
+                <td th:text="${order.company.companyEmail}">Company Email</td>
+                <td th:text="${order.formattedOrderDate}">Order Date</td>
+                <td th:text="${order.expectedDeliveryDate}">Expected Delivery</td>
+                <td th:text="${order.deliveredDate}">Expected Delivery</td>
+                <td th:text="${order.totalPrice} + ' DKK'">Total Price</td>
+                <td>
+                    <button type="button" class="icon-button show-items-button" onclick="showOrderData(this)">
+                        Show Items
+                        <!-- Hidden div to store the order items -->
+                        <div style="display: none;" class="order-items">
+                            <ul>
+                                <li th:each="cartItem : ${order.cartItems}">
+                                    <span th:text="${cartItem.menuItem.title}"></span>
+                                    <span th:text="${cartItem.desiredQuantity} + ' Item/s'"></span>
+                                    <span th:text="' - Item Price: ' + ${cartItem.totalCost} + ' DKK'"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </button>
+                </td>
+                <td>
+                    <div class="action-buttons">
+                        <form id="invoiceForm" method="post" action="/admin/order/invoice">
+                            <!-- Hidden Fields for Order ID and Token -->
+                            <input type="hidden" id="orderId3" name="orderId" th:value="${order.id}">
+                            <input type="hidden" id="token3" name="token" th:value="${token}">
+
+                            <!-- Action Button to Trigger Submission -->
+                            <button type="submit" class="icon-button show-items-button">Invoice Order</button>
+                        </form>
+
+
+
+
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2>Orders Totally Completed</h2>
+        <table class="company-table styled-table">
+            <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Company CVR</th>
+                <th>Company Email</th>
+                <th>Order Date</th>
+                <th>Expected Delivery</th>
+                <th>Delivered Date</th>
+                <th>Total Price</th>
+                <th>Items</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Loop through orders that are approved and ready for shipping -->
+            <tr th:each="order : ${orderCompleted}">
+                <td th:text="${order.company.companyName}">Company Name</td>
+                <td th:text="${order.company.companyCVR}">Company CVR</td>
+                <td th:text="${order.company.companyEmail}">Company Email</td>
+                <td th:text="${order.formattedOrderDate}">Order Date</td>
+                <td th:text="${order.expectedDeliveryDate}">Expected Delivery</td>
+                <td th:text="${order.deliveredDate}">Expected Delivery</td>
+                <td th:text="${order.totalPrice} + ' DKK'">Total Price</td>
+                <td>
+                    <button type="button" class="icon-button show-items-button" onclick="showOrderData(this)">
+                        Show Items
+                        <!-- Hidden div to store the order items -->
+                        <div style="display: none;" class="order-items">
+                            <ul>
+                                <li th:each="cartItem : ${order.cartItems}">
+                                    <span th:text="${cartItem.menuItem.title}"></span>
+                                    <span th:text="${cartItem.desiredQuantity} + ' Item/s'"></span>
+                                    <span th:text="' - Item Price: ' + ${cartItem.totalCost} + ' DKK'"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </button>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Company List -->
+    <div id="companyTable" class="collapsible-section">
+        <h2>Company List</h2>
+        <table class="company-table styled-table">
+            <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Company CVR</th>
+                <th>Company Email</th>
+                <th>6-digit Passcode</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="company : ${companies}" th:if="${company.companyEmail != 'admin@syllesisfabrik.com'}">
+                <td th:text="${company.companyName}">Company Name</td>
+                <td th:text="${company.companyCVR}">Company CVR</td>
+                <td th:text="${company.companyEmail}">Company Email</td>
+                <td th:text="${company.loginCode}">6-digit Passcode</td>
+                <td th:text="${company.phoneNumber}">Phone Number</td>
+                <td>
+                    <span th:text="${company.streetName + ' ' + company.streetNumber + ', ' + company.postcode + ' ' + company.city}"
+                          style="all: unset; display: inline;">
+    Street Name, Street Number, Postcode City
+</span>
+
+                </td>
+                <td>
+                    <form action="/admin/delete/company" method="post">
+                        <input type="hidden" name="companyEmail" th:value="${company.companyEmail}">
+                        <input type="hidden" name="token" th:value="${token}">
+                        <button type="submit" class="btn delete-btn">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Menu Management Section with updated delete button for each ice cream item -->
+    <div id="menuSection" class="collapsible-section">
+        <h2>Ice Cream Menu</h2>
+        <table class="company-table styled-table">
+            <thead>
+            <tr>
+                <th>Variant</th>
+                <th>Amount In Stock</th>
+                <th>Price</th>
+                <th>Availability</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${menuItems}">
+                <td th:text="${item.title}">Title</td>
+                <td th:text="${item.quantity}">Quantity</td>
+                <td th:text="${item.pricePerLiter} + ' DKK'">Price</td>
+                <td>
+                    <span th:if="${item.isAvailable}" style="color: green;">&#10003;</span>
+                    <span th:if="${!item.isAvailable}" style="color: red;">&#10007;</span>
+                </td>
+                <td>
+                    <!-- Edit Button -->
+                    <button type="button" class="icon-button edit-button"
+                            th:data-item-id="${item.id}" th:data-title="${item.title}"
+                            th:data-description="${item.description}" th:data-allergens="${item.allergens}"
+                            th:data-quantity="${item.quantity}" th:data-price-per-liter="${item.pricePerLiter}"
+                            th:data-is-available="${item.isAvailable}" th:data-images="${item.imagePaths}"
+                            onclick="showEditModal(this)">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+
+
+                    <!-- Info Button -->
+                    <button type="button" class="icon-button info-button"
+                            th:data-allergens="${item.allergens}"
+                            th:data-description="${item.description}"
+                            th:data-images="${item.imagePaths}"
+                            onclick="showInfo(this)">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+
+                    <!-- Delete Button (Newly added) -->
+                    <form action="/admin/delete/icecream" method="post" style="display:inline;">
+                        <input type="hidden" name="iceCreamId" th:value="${item.id}">
+                        <input type="hidden" name="token" th:value="${token}">
+                        <button type="submit" class="icon-button delete-button" style="background: red">
+                            <i class="fas fa-trash-alt" style="color: white; "></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Info Modal for Order Approval -->
+    <!-- Info Modal for Order Approval -->
+    <div id="approvalModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Approve Order</h2>
+                <span class="close" onclick="closeApprovalModal()">&times;</span>
+            </div>
+            <form id="approveForm" method="post" action="/admin/order/approve">
+                <!-- Hidden Fields for Order ID and Token -->
+                <input type="hidden" id="orderId" name="orderId">
+                <input type="hidden" id="token" name="token">
+
+                <!-- Expected Delivery Date -->
+                <label for="deliveryDate">Expected Delivery Date:</label>
+                <input type="date" id="deliveryDate" name="expectedDeliveryDate" class="input-field" required>
+
+                <!-- Action Button to Trigger Submission -->
+                <button type="submit" class="btn submit-btn">Approve Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Disapproval Modal -->
+    <div id="disapprovalModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Disapprove Order</h2>
+                <span class="close" onclick="closeDisapprovalModal()">&times;</span>
+            </div>
+            <form id="disapproveForm" method="post" action="/admin/order/disapprove">
+                <!-- Hidden Fields for Order ID and Token -->
+                <input type="hidden" id="orderId2" name="orderId">
+                <input type="hidden" id="token2" name="token">
+
+                <!-- Reason for Disapproval (optional) -->
+                <label for="disapprovalReason">Reason for Disapproval (optional):</label>
+                <textarea id="disapprovalReason" name="disapprovalReason" rows="4" class="input-field"></textarea>
+
+                <button type="submit" class="btn submit-btn">Disapprove Order</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="deliveryListForm" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Download by Delivery Date</h2>
+                <span class="close" onclick="closeDeliveryListForm()">&times;</span>
+            </div>
+
+
+            <form id="deliveryListDate">
+                <input type="hidden" id="token4" name="token">
+                <label for="downloadDate">Expected Delivery Date:</label>
+                <input type="date" id="downloadDate" name="desiredDownloadDate" class="input-field" required>
+                <button type="button" class="btn submit-btn" onclick="fetchCSV()">Fetch and Download CSV</button>
+            </form>
+        </div>
+    </div>
+    <!-- Info Modal -->
+    <!-- Info Modal -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Item Information</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div id="infoContent">
+                <p id="itemDetails"></p>
+
+                <!-- Slideshow Container -->
+                <div id="slideshowContainer" class="slideshow-container">
+                    <!-- Images will be dynamically inserted here -->
+                </div>
+                <div id="dotsContainer" class="dots-container">
+                    <!-- Dots for navigation -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Edit Ice Cream Flavor</h2>
+            <span class="close" onclick="closeEditModal()">&times;</span>
+        </div>
+        <div id="availabilityError" style="color: red; display: none; margin-top: 10px;">
+            Cannot mark as available if quantity is 0.
+        </div>
+        <form id="editForm" action="/admin/menu/update" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" id="editItemId"> <!-- Hidden field for the item ID -->
+            <input type="hidden" name="imagepath" id="imagepath"> <!-- Dynamically updated imagePaths -->
+
+            <label for="editTitle">Variant:</label>
+            <input type="text" name="title" id="editTitle" class="input-field" required>
+
+            <label for="editDescription">Description:</label>
+            <input type="text" name="description" id="editDescription" class="input-field" required>
+
+            <label for="editAllergens">Allergens (comma-separated):</label>
+            <input type="text" name="allergens" id="editAllergens" class="input-field" required>
+
+            <label for="editQuantity">Quantity:</label>
+            <input type="number" name="quantity" id="editQuantity" class="input-field" min="0" step="0.1" required>
+
+            <label for="editPricePerLiter">Price per Liter:</label>
+            <input type="number" name="pricePerLiter" id="editPricePerLiter" class="input-field" min="0" step="0.01" required>
+
+            <div id="editSlideshowContainer" class="slideshow-container">
+                <!-- Images will be dynamically inserted here -->
+            </div>
+            <div id="editDotsContainer" class="dots-container">
+                <!-- Dots for navigation -->
+            </div>
+
+
+
+            <div id="uploadModalFooter" style="align-items: center; text-align: center; justify-content: center; display: none;">
+                <label class="custom-file-upload">
+                    Upload Images (Max 3)
+                    <input type="file" name="images" accept="image/*" multiple onchange="previewImagesUpdate(this)" />
+
+                </label>
+                <span id="fileName2" class="file-label">No files selected</span>
+
+                <div id="imagePreviewContainerUpdate" class="slideshow-container"></div>
+                <div id="dotContainerUpdate" class="dots-container"></div>
+
+            </div>
+
+            <div id="modalFooter" style="align-items: center; text-align: center; justify-content: center">
+                <button type="button" id="deleteAllImages" class="btn delete-btn" style="background-color: red; color: white;" onclick="deleteAllImages()">Delete All Images</button>
+            </div>
+
+            <label for="editIsAvailable">
+                <input type="checkbox" id="editIsAvailable" onclick="toggleStock()"> Available
+            </label>
+            <input type="hidden" name="token" th:value="${token}">
+            <button type="submit" class="btn submit-btn">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<div id="addMenuItemForm" class="collapsible-section">
+        <h2>Add New Menu Item</h2>
+        <form action="/admin/menu/add" method="post" enctype="multipart/form-data" class="admin-form">
+            <div class="input-row">
+                <input type="text" name="title" placeholder="Variant name" class="input-field" required>
+                <input type="number" name="size" placeholder="Size" class="input-field" required>
+            </div>
+            <!-- Second Row -->
+            <div class="input-row">
+                <input type="text" name="description" placeholder="Description" class="input-field" required>
+                <input type="text" name="allergens" placeholder="Allergens (comma-separated)" class="input-field" required>
+            </div>
+            <!-- Third Row -->
+            <div class="input-row">
+                <input type="number" name="quantity" placeholder="Quantity" class="input-field" min="0" step="0.1" required>
+                <input type="number" name="pricePerLiter" placeholder="Price per Liter" class="input-field" min="0" step="0.01" required>
+            </div>
+
+            <!-- File inputs for images -->
+            <label>Upload Images (Max 3):</label>
+            <label class="custom-file-upload">
+                Upload Images (Max 3)
+                <input type="file" name="images" accept="image/*" multiple onchange="previewImages(this)" />
+            </label>
+            <span id="fileName" class="file-label">No files selected</span>
+
+            <!-- Slideshow Preview -->
+            <div id="imagePreviewContainer" class="slideshow-container">
+                <!-- Images will be dynamically inserted here -->
+            </div>
+            <div id="dotContainer" class="dots-container">
+                <!-- Dots will be dynamically inserted here -->
+            </div>
+
+            <input type="hidden" name="isAvailable" value="true">
+            <input type="hidden" name="token" th:value="${token}">
+            <button type="submit" class="btn submit-btn">Add Menu Item</button>
+        </form>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="admin-footer">
+        <p>&copy; 2025 Aalborg University. All Rights Reserved</p>
+        <p><a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Cookie Policy</a></p>
+    </footer>
+</div>
+</body>
+
+<style>
+    body {
+        background-image: url('/backgroundUndA/background_final.png');
+        background-repeat: repeat;
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+
+</html>

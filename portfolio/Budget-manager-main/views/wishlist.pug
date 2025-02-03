@@ -1,0 +1,55 @@
+extends layout
+
+block content
+    div.content
+        div.section-title
+            h1 GOALS
+        div.scrollable-content
+            if goals.length > 0
+                ul#sortable.list-group
+                    each goal in goals
+                        li.list-item(goal-id=goal._id)
+                            a(href=`/wishlist/goal/${goal._id}`)
+                                div.label
+                                    span.label-name= goal.name
+                                    span.label-status #{goal.saved} / #{goal.cost}
+                                div.progress-bar
+                                    div.progress-fill(style=`width: ${goal.percentage_saved}%`)
+            else
+                p.center.warning You have no current goals, add a new one below:
+            .center
+                a.btn(href='/wishlist/goal/create') Create New Goal
+
+    // Display a message if there are no goals
+    if goals.length === 0
+        .empty-container
+            p No content to display
+
+    script.
+        $(function () {
+            $("#sortable").sortable({
+                connectWith: "#sortable", // Only connect with itself
+                cancel: ".create-button", // Prevent dragging when clicking on the create button
+                stop: function (event, ui) {
+                    const firstItemId = ui.item.parent().children().first().attr('goal-id'); // Get the ID of the first item
+                    updateMainGoal(firstItemId); // Update priority of the first item
+                }
+            })
+        });
+
+        // Function to update priority of a goal
+        function updateMainGoal(goalId) {
+            fetch('/wishlist/goal/update-main-goal', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({goalId})
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to update main goal');
+                    }
+                })
+                .catch(error => console.error('Error updating main goal:', error));
+        }

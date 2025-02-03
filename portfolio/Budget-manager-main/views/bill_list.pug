@@ -1,0 +1,55 @@
+extends layout
+
+block content
+    div.content
+        div.row.center
+            div.scrollable-content
+                div.list-title
+                    h1= title
+
+                    a.btn.small(href='/settings') X
+                if error
+                    div#error.error-message= error
+                ul
+                    each bill in bills
+                        li.non-clickable
+                            span.label-name #{bill.name}
+                            div.row
+                                span.label-name #{bill.cost} DKK
+                                a.btn.small(href=`/settings/bills/${bill._id}/update`) Edit
+                                a.btn.small(href=`/settings/bills/${bill._id}/delete`) Delete
+                                button.btn.small(name='payUpdate' id= bill._id) #{bill.is_paid ? 'Cancel Payment' : 'Pay Bill'}
+                div.center
+                    a.btn(href=`/settings/bills/create`) Add New Bill
+
+    script.
+        $('button[name*=payUpdate]').click(async function () {
+            // Get id from button
+            let billId = this.id;
+
+            try {
+                // Fetch the update-paid post from billController
+                const response = await fetch('/settings/bills/update-paid', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    // Set body.billId to billId of this button
+                    body: JSON.stringify({billId})
+                });
+
+                // Check if response is successful
+                if (response.ok) {
+                    // Reload updated page
+                    window.location.reload();
+                } else if (response.status === 400) {
+                    // Display error popup
+                    $('#payBillErrorOverlay').show();
+                } else {
+                    // Handle other error cases
+                    throw new Error('Unexpected error occurred.');
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        });

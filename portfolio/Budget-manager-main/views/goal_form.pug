@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    div.content
+        div.row.center
+            div.popup
+                h1.popup-title= title
+                form(action= action, method="post")
+                    div.form-group
+                        label.popup-label(for="name") Name:
+                        input#name.popup-input(type="text", name="name", value=name, required)
+                    div.form-group
+                        label.popup-label(for="cost") Cost:
+                        input#cost.popup-input(type="number", name="cost", value=cost)
+                    if goal
+                        div.form-group
+                            label.popup-label(for="saved") Saved Amount:
+                            input#saved.popup-input(type="number", name="saved", value=saved, required)
+                    div.row.space-around
+                        button.btn(type="submit") Confirm
+                        a.btn(href='/wishlist') Cancel

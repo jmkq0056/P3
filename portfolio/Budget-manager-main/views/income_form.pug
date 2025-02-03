@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    div.content
+        div.row.center
+            div.popup
+                h1.popup-title= title
+                form(method='post', action=action)
+                    div.form-group
+                        label.popup-label(for='name') Name:
+                        input#name.popup-input(type='text', name='name', value=name, required)
+                    div.form-group
+                        label.popup-label(for='amount') Cost:
+                        input#amount.popup-input(type='number', name= 'amount', placeholder='Enter amount of income', value=amount required)
+                    div.row.space-around
+                        button.btn(type='submit') Confirm
+                        a.btn(href=`/settings/income/`) Cancel

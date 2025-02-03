@@ -1,0 +1,66 @@
+extends layout
+
+block content
+    .content
+        .section-title
+            h1 Settings
+
+        .scrollable-content
+            if error
+                .overlay(style='display:block;')
+                    .error-popup#error-popup
+                        .popup-content
+                            p= error
+                            button.close-popup Close
+
+            if expenses
+                ul
+                    each expense in expenses
+                        li.non-clickable(style='margin-bottom: 20px;')
+                            span.label-name #{expense.name}
+                            .row
+                                span.label-name #{expense.allocated} DKK
+                                a.btn.small(href=`/settings/expense/${expense._id}/update`) Edit
+                                a.btn.small(href=`/settings/expense/${expense._id}/delete`) Delete
+            if mainGoal
+                li.non-clickable(style='margin-bottom: 20px;')
+                    span.label-name Main goal: #{mainGoal.name}
+                    .row
+                        span.label-name #{mainGoal.allocated} DKK
+                        a.btn.small(href=`/settings/main-goal/${mainGoal._id}/update`) Edit
+            li.non-clickable(style='margin-bottom: 20px;')
+                span.label-name Savings (recommended: #{recommendedSavings} DKK)
+                .row
+                    span.label-name #{savings.allocated} DKK
+                    a.btn.small(href=`/settings/expense/${savings._id}/update`) Edit
+        .row
+            a.btn.space.downspace(href="/settings/bills") Bills
+            a.btn.space.downspace(href="/settings/income") Income
+            a.btn.space.downspace(href='/settings/expense/create') Create New Expense
+
+        if isAnyIncome
+            div#pagefooter2.page-footer
+                .main-goal
+                    .main-goal-label
+                        if remainingAvailable < 0
+                            .exceed-message
+                                span.main-goal-name You have exceeded your weekly budget by #{(-remainingAvailable)} DKK.
+                        else if remainingAvailable === 0
+                            .exceed-message
+                                span.main-goal-name You have spent your weekly budget
+                        else
+                            span.main-goal-name Spent this week:
+                            span.main-goal-progress #{currentlyAllocated} / #{availableWeekly}
+                    .main-goal-progress-bar
+                        div(class=(currentlyAllocated > availableWeekly ? 'progress-fill-exceeded-2' : 'progress-fill-2'), style=`width: ${(currentlyAllocated / availableWeekly) * 100}%;`)
+
+    script.
+        document.addEventListener('DOMContentLoaded', function () {
+            const closeButton = document.querySelector('.close-popup');
+            closeButton.addEventListener('click', function () {
+                const overlay = document.querySelector('.overlay');
+                if (overlay) {
+                    overlay.style.display = 'none';
+                }
+            });
+        });

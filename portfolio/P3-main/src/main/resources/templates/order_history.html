@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Basket - Sylles Fabrik</title>
+    <link rel="stylesheet" type="text/css" href="/css/order-history.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="/js/order-history.js"></script>
+</head>
+<body>
+<!-- Include Navigation Menu -->
+<div th:insert="~{navbar :: body}"></div>
+
+
+<!-- Header Section -->
+<div class="place-order-container">
+    <div class="logo-container">
+        <img src="/sylle_logo/sylle_logo2.png" alt="Sylles Fabrik Logo" class="logo">
+    </div>
+    <h1 class="welcome-message">Your Order History</h1>
+    <div class="error-message" th:if="${error}" style="text-align: center;">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
+
+
+<!-- Button Row -->
+<div class="button-row">
+    <button onclick="toggleSection('currentOrdersSection')" class="btn toggle-btn">
+        <i class="fas fa-clipboard-list"></i> Current Orders
+    </button>
+    <button onclick="toggleSection('toBeDelivered')" class="btn toggle-btn">
+        <i class="fas fa-shipping-fast"></i> Soon Delivery Orders
+    </button>
+    <button onclick="toggleSection('completedOrders')" class="btn toggle-btn">
+        <i class="fas fa-check-circle"></i> Delivered Orders
+    </button>
+</div>
+
+<!-- Current Orders Section -->
+<div id="currentOrdersSection" class="collapsible-section">
+    <h2>Current Orders</h2>
+    <h4>Waiting Approval...</h4>
+    <table class="company-table styled-table">
+        <thead>
+        <tr>
+            <th>Company Name</th>
+            <th>Company CVR</th>
+            <th>Company Email</th>
+            <th>Order Date</th>
+            <th>Total Price</th>
+            <th>Items</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Loop through current orders -->
+        <tr th:each="order : ${currentOrders}">
+            <td th:text="${order.company.companyName}">Company Name</td>
+            <td th:text="${order.company.companyCVR}">Company CVR</td>
+            <td th:text="${order.company.companyEmail}">Company Email</td>
+            <td th:text="${order.formattedOrderDate}">Order Date</td>
+            <td th:text="${order.totalPrice} + ' DKK'">Total Price</td>
+            <td>
+                <button type="button" class="icon-button show-items-button" onclick="showOrderData(this)">
+                    Show Items
+                    <!-- Hidden div to store the order items -->
+                    <div style="display: none;" class="order-items">
+                        <ul>
+                            <li th:each="cartItem : ${order.cartItems}">
+                                <span th:text="${cartItem.menuItem.title}"></span>
+                                <span th:text="${cartItem.desiredQuantity} + ' Item/s'"></span>
+                                <span th:text="' - Item Price: ' + ${cartItem.totalCost} + ' DKK'"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Orders Ready for Delivery -->
+<div id="toBeDelivered" class="collapsible-section" style="display:none;">
+    <h2>Orders Ready to Deliver</h2>
+    <h4>Waiting Delivery...</h4>
+    <table class="company-table styled-table">
+        <thead>
+        <tr>
+            <th>Company Name</th>
+            <th>Company CVR</th>
+            <th>Company Email</th>
+            <th>Order Date</th>
+            <th>Expected Delivery</th>
+            <th>Total Price</th>
+            <th>Items</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${unshippedOrders}">
+            <td th:text="${order.company.companyName}">Company Name</td>
+            <td th:text="${order.company.companyCVR}">Company CVR</td>
+            <td th:text="${order.company.companyEmail}">Company Email</td>
+            <td th:text="${order.formattedOrderDate}">Order Date</td>
+            <td th:text="${order.expectedDeliveryDate}">Expected Delivery</td>
+            <td th:text="${order.totalPrice} + ' DKK'">Total Price</td>
+            <td>
+                <button type="button" class="icon-button show-items-button" onclick="showOrderData(this)">
+                    Show Items
+                    <div style="display: none;" class="order-items">
+                        <ul>
+                            <li th:each="cartItem : ${order.cartItems}">
+                                <span th:text="${cartItem.menuItem.title}"></span>
+                                <span th:text="${cartItem.desiredQuantity} + ' Item/s'"></span>
+                                <span th:text="' - Item Price: ' + ${cartItem.totalCost} + ' DKK'"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Delivered Orders Section -->
+<div id="completedOrders" class="collapsible-section" style="display:none;">
+    <h2>Completed Orders</h2>
+    <h4>Delivered Orders...</h4>
+    <table class="company-table styled-table">
+        <thead>
+        <tr>
+            <th>Company Name</th>
+            <th>Company CVR</th>
+            <th>Company Email</th>
+            <th>Order Date</th>
+            <th>Expected Delivery</th>
+            <th>Delivered Date</th>
+            <th>Total Price</th>
+            <th>Items</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${deliveredOrders}">
+            <td th:text="${order.company.companyName}">Company Name</td>
+            <td th:text="${order.company.companyCVR}">Company CVR</td>
+            <td th:text="${order.company.companyEmail}">Company Email</td>
+            <td th:text="${order.formattedOrderDate}">Order Date</td>
+            <td th:text="${order.expectedDeliveryDate}">Expected Delivery</td>
+            <td th:text="${order.deliveredDate}">Delivered Date</td>
+            <td th:text="${order.totalPrice} + ' DKK'">Total Price</td>
+            <td>
+                <button type="button" class="icon-button show-items-button" onclick="showOrderData(this)">
+                    Show Items
+                    <div style="display: none;" class="order-items">
+                        <ul>
+                            <li th:each="cartItem : ${order.cartItems}">
+                                <span th:text="${cartItem.menuItem.title}"></span>
+                                <span th:text="${cartItem.desiredQuantity} + ' Item/s'"></span>
+                                <span th:text="' - Item Price: ' + ${cartItem.totalCost} + ' DKK'"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Info Modal -->
+<div id="infoModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Item Information</h2>
+            <span class="close" onclick="closeModal()">&times;</span>
+        </div>
+        <div id="infoContent"></div>
+    </div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="user-footer">
+    <p>&copy; 2025 Aalborg University. All Rights Reserved</p>
+    <p><a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Cookie Policy</a></p>
+</footer>
+
+</body>
+<style>
+    body {
+        background-image: url('/backgroundUndA/background_final.png');
+        background-repeat: repeat;
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+
+</html>
