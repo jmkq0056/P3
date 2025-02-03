@@ -18,6 +18,8 @@ Technology Stack: Java, Spring Boot, MongoDB
 
 Description: A real-world project developed for an actual ice cream company. This system helps manage inventory, sales, and customer data using a robust Spring Boot backend and MongoDB as the database. The application is designed to improve operational efficiency for the company.
 
+Hosted here with help of docker on render : https://p3-s79t.onrender.com
+
 Features
 
 Full-stack development experience with both JavaScript (Node.js) and Java (Spring Boot).
