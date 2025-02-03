@@ -1,4 +1,4 @@
-Portfolio - Jawad
+Portfolio - Jawad M.K. Qayyum
 
 About Me
 
