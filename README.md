@@ -1,43 +1,43 @@
 # Portfolio – Jawad M.K. Qayyum
 
-## Om mig
-Jeg er softwarestuderende (5. semester) ved AAU København med kompetencer inden for Java, JavaScript og C.  
-Jeg har erfaring med web- og mobiludvikling (React.js, Flutter) samt backend-udvikling med Spring Boot, Node.js og MongoDB.  
-Jeg interesserer mig for at bygge brugervenlige, skalerbare systemer og har erfaring med både studie- og selvstændige projekter.
+## About Me
+I am a 5th-semester Software Engineering student at AAU Copenhagen with strong skills in **Java, JavaScript, and C**.  
+I have hands-on experience in **web and mobile development** (React.js, Flutter) as well as **backend development** using Spring Boot, Node.js, and MongoDB.  
+I am fluent in Danish and English, which allows me to work effectively in both local and international environments.  
 
-## Projekter
+## Projects
 
-### Interpreter i Java
-- Udviklet et skriptsprog og interpreter til styring af smart lights.  
-- Fokus: sprogdesign, systemintegration og Java backend.
+### Interpreter in Java
+- Developed a scripting language and interpreter for smart-light control.  
+- Focus: language design, system integration, and Java backend.  
 
 ### Management System
-- Bygget i Java (Spring Boot) med MongoDB.  
-- Funktioner: ordrebehandling, lagerstyring, fakturering og kundehåndtering.  
+- Built in Java (Spring Boot) with MongoDB.  
+- Features: order processing, inventory management, invoicing, and customer handling.  
 
 ### Budget Manager
-- Udviklet i JavaScript, Node.js og MongoDB.  
-- Funktioner: budgetopsætning, udgiftssporing og rapportgenerering.  
+- Developed with JavaScript, Node.js, and MongoDB.  
+- Features: budget setup, expense tracking, and report generation.  
 
 ### Secure Service Group App
-- Flutter-app med egen server.  
-- Fokus: sikkerhed, brugerstyring og datahåndtering.  
+- Flutter app with custom server backend.  
+- Focus: security, user management, and data handling.  
 
-### Øvrige projekter
-- Focuz: kalorie-tracker og fitnessdagbog baseret på billedgenkendelse.  
-- Shopping List Manager (mobil og web).  
+### Other Projects
+- Focuz: calorie tracker and fitness diary based on image recognition.  
+- Shopping List Manager (mobile and web).  
 
 ## Tech Stack
-- **Programmering:** Java, JavaScript, C  
+- **Programming:** Java, JavaScript, C  
 - **Web & Mobile:** React.js, Flutter, Node.js  
-- **Backend:** Spring Boot, REST API’er  
+- **Backend:** Spring Boot, REST APIs  
 - **Database:** MongoDB  
-- **Værktøjer:** Git, Docker, Agile  
+- **Tools:** Git, Docker, Agile  
 
-## Uddannelse
-- Software Engineering, AAU København (2023– )  
-- STX, Sydkysten Gymnasium (2019–2022, snit: 9,4)  
+## Education
+- Software Engineering, AAU Copenhagen (2023– )  
+- STX, Sydkysten Gymnasium (2019–2022, GPA: 9.4)  
 
-## Kontakt
+## Contact
 - Email: [Jawa0056@gmail.com](mailto:Jawa0056@gmail.com)  
 - GitHub: [jmkq0056](https://github.com/jmkq0056/P3)  
