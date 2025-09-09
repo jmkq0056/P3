@@ -1,40 +1,43 @@
-Portfolio - Jawad M.K. Qayyum
+# Portfolio – Jawad M.K. Qayyum
 
-About Me
+## Om mig
+Jeg er softwarestuderende (5. semester) ved AAU København med kompetencer inden for Java, JavaScript og C.  
+Jeg har erfaring med web- og mobiludvikling (React.js, Flutter) samt backend-udvikling med Spring Boot, Node.js og MongoDB.  
+Jeg interesserer mig for at bygge brugervenlige, skalerbare systemer og har erfaring med både studie- og selvstændige projekter.
 
-My name is Jawad, and I am a 4th-semester Software Engineering bachelor's student at Aalborg University (AAU). This portfolio showcases two of my university projects, which demonstrate my skills in full-stack development using modern technologies like Node.js, Spring Boot, and MongoDB.
+## Projekter
 
-Projects
+### Interpreter i Java
+- Udviklet et skriptsprog og interpreter til styring af smart lights.  
+- Fokus: sprogdesign, systemintegration og Java backend.
 
-1. Budget Manager
+### Management System
+- Bygget i Java (Spring Boot) med MongoDB.  
+- Funktioner: ordrebehandling, lagerstyring, fakturering og kundehåndtering.  
 
-Technology Stack: JavaScript, Node.js, MongoDB
+### Budget Manager
+- Udviklet i JavaScript, Node.js og MongoDB.  
+- Funktioner: budgetopsætning, udgiftssporing og rapportgenerering.  
 
-Description: A budget management web application built using Node.js and MongoDB. This application allows users to track their expenses, set budgets, and generate reports. The goal of this project was to create an efficient and user-friendly financial management tool.
+### Secure Service Group App
+- Flutter-app med egen server.  
+- Fokus: sikkerhed, brugerstyring og datahåndtering.  
 
-2. Ice Cream Company Management System
+### Øvrige projekter
+- Focuz: kalorie-tracker og fitnessdagbog baseret på billedgenkendelse.  
+- Shopping List Manager (mobil og web).  
 
-Technology Stack: Java, Spring Boot, MongoDB
+## Tech Stack
+- **Programmering:** Java, JavaScript, C  
+- **Web & Mobile:** React.js, Flutter, Node.js  
+- **Backend:** Spring Boot, REST API’er  
+- **Database:** MongoDB  
+- **Værktøjer:** Git, Docker, Agile  
 
-Description: A real-world project developed for an actual ice cream company. This system helps manage inventory, sales, and customer data using a robust Spring Boot backend and MongoDB as the database. The application is designed to improve operational efficiency for the company.
+## Uddannelse
+- Software Engineering, AAU København (2023– )  
+- STX, Sydkysten Gymnasium (2019–2022, snit: 9,4)  
 
-Hosted here with help of docker on render : https://p3-s79t.onrender.com
-
-Features
-
-Full-stack development experience with both JavaScript (Node.js) and Java (Spring Boot).
-
-NoSQL database implementation using MongoDB.
-
-Hands-on experience with RESTful API development and system integration.
-
-Practical applications designed for real-world use cases.
-
-Contact
-
-For more details or collaboration opportunities, feel free to connect with me!
-
-jmkq6570@gmail.com
-
-Thank you for checking out my projects! 🚀
-
+## Kontakt
+- Email: [Jawa0056@gmail.com](mailto:Jawa0056@gmail.com)  
+- GitHub: [jmkq0056](https://github.com/jmkq0056/P3)  
