@@ -1,0 +1,3506 @@
+/* Philips Hue Script Editor - Core styles */
+
+:root {
+    /* Core brand colors */
+    --hue-primary: #00C8FF;
+    --hue-primary-hover: #33D3FF;
+
+    --hue-secondary: #FF8800;
+    --hue-secondary-hover: #FFA03D;
+
+    --hue-accent: #FA5CA0;
+    --hue-accent-hover: #FF7EB5;
+
+    /* Scene colors */
+    --hue-energize: #22A7F0;
+    --hue-concentrate: #45D1FD;
+    --hue-read: #FFCB65;
+    --hue-relax: #FF9D66;
+    --hue-nightlight: #A25FC4;
+
+    /* System states */
+    --hue-success: #2ECC71;
+    --hue-warning: #FFB046;
+    --hue-danger: #FF5E5B;
+    --hue-info: #00C8FF;
+
+    /* Light theme */
+    --light-bg: #FAFBFC;
+    --light-card-bg: #FFFFFF;
+    --light-input-bg: #F5F7F9;
+    --light-text: #17242C;
+    --light-muted-text: #6D7A80;
+    --light-border: #E8EBEF;
+    --light-hover: #F0F3F6;
+
+    /* Dark theme */
+    --dark-bg: #121C24;
+    --dark-card-bg: #1D272F;
+    --dark-input-bg: #2A343C;
+    --dark-text: #E9EDF0;
+    --dark-muted-text: #A4ACB2;
+    --dark-border: #364049;
+    --dark-hover: #253340;
+
+    /* Typography scale */
+    --font-small: 12px;
+    --font-normal: 14px;
+    --font-medium: 16px;
+    --font-large: 18px;
+
+    /* Motion */
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Elevation */
+    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.12);
+
+    /* Shape */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+}
+
+/* Base */
+body {
+    transition: background-color var(--transition-medium), color var(--transition-medium);
+    padding-bottom: 20px;
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Theme variants */
+body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+body.light-mode {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    line-height: 1.3;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: inherit;
+}
+
+h1 {
+    font-size: 2rem;
+    letter-spacing: -0.01em;
+}
+
+h2 {
+    font-size: 1.75rem;
+    letter-spacing: -0.01em;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+h5 {
+    font-size: 1.125rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+/* Theme-aware text colors */
+.text-muted {
+    color: var(--light-muted-text) !important;
+}
+
+.dark-mode .text-muted {
+    color: var(--dark-muted-text) !important;
+}
+
+/* Code formatting */
+code:not([class*="language-"]) {
+    font-family: 'Fira Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9em;
+    padding: 0.2em 0.4em;
+    border-radius: var(--radius-sm);
+    background-color: rgba(0, 0, 0, 0.04);
+    color: inherit;
+}
+
+.dark-mode code:not([class*="language-"]) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Navigation */
+.navbar {
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--transition-medium);
+    padding: 0.75rem 1rem;
+    z-index: 1030;
+    border-bottom: none;
+}
+
+.dark-mode .navbar {
+    background-color: var(--dark-card-bg);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.light-mode .navbar {
+    background-color: var(--light-card-bg);
+}
+
+.navbar-brand {
+    font-size: var(--font-large);
+    font-weight: 600;
+    color: var(--hue-primary);
+    letter-spacing: -0.01em;
+}
+
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.navbar-logo img {
+    height: 128px;
+    width: auto;
+    transition: transform var(--transition-medium), filter var(--transition-medium);
+}
+
+
+.navbar-brand:hover .navbar-logo img {
+    transform: rotate(360deg) scale(1.15);
+    filter: brightness(150%) drop-shadow(0 0 20px var(--hue-primary)) drop-shadow(0 0 40px var(--hue-accent)) drop-shadow(0 0 60px var(--hue-secondary)) hue-rotate(180deg);
+    animation: crazy-hover-glow 1s ease-in-out infinite alternate;
+}
+
+/* CRAZY HOVER ANIMATION */
+@keyframes crazy-hover-glow {
+    0% {
+        filter: brightness(150%) drop-shadow(0 0 20px var(--hue-primary)) drop-shadow(0 0 40px var(--hue-accent)) drop-shadow(0 0 60px var(--hue-secondary)) hue-rotate(0deg);
+        transform: rotate(360deg) scale(1.15) translateY(0px);
+    }
+
+    25% {
+        filter: brightness(200%) drop-shadow(0 0 30px var(--hue-energize)) drop-shadow(0 0 50px var(--hue-nightlight)) drop-shadow(0 0 70px var(--hue-relax)) hue-rotate(90deg);
+        transform: rotate(375deg) scale(1.2) translateY(-5px);
+    }
+
+    50% {
+        filter: brightness(180%) drop-shadow(0 0 35px var(--hue-concentrate)) drop-shadow(0 0 55px var(--hue-warning)) drop-shadow(0 0 75px var(--hue-success)) hue-rotate(180deg);
+        transform: rotate(390deg) scale(1.25) translateY(-10px);
+    }
+
+    75% {
+        filter: brightness(220%) drop-shadow(0 0 40px var(--hue-danger)) drop-shadow(0 0 60px var(--hue-info)) drop-shadow(0 0 80px var(--hue-primary)) hue-rotate(270deg);
+        transform: rotate(405deg) scale(1.3) translateY(-8px);
+    }
+
+    100% {
+        filter: brightness(250%) drop-shadow(0 0 50px var(--hue-accent)) drop-shadow(0 0 70px var(--hue-secondary)) drop-shadow(0 0 90px var(--hue-primary)) hue-rotate(360deg);
+        transform: rotate(420deg) scale(1.35) translateY(-12px);
+    }
+}
+
+/* INSANE CLICK ANIMATION */
+@keyframes navbar-logo-glow {
+    0% {
+        filter: brightness(100%) drop-shadow(0 0 0px transparent) hue-rotate(0deg);
+        transform: scale(1) rotate(0deg);
+    }
+
+    10% {
+        filter: brightness(300%) drop-shadow(0 0 30px var(--hue-primary)) drop-shadow(0 0 60px var(--hue-accent)) hue-rotate(72deg);
+        transform: scale(1.4) rotate(36deg) translateX(10px);
+    }
+
+    20% {
+        filter: brightness(250%) drop-shadow(0 0 40px var(--hue-energize)) drop-shadow(0 0 80px var(--hue-nightlight)) hue-rotate(144deg);
+        transform: scale(1.2) rotate(-30deg) translateY(-15px);
+    }
+
+    30% {
+        filter: brightness(350%) drop-shadow(0 0 50px var(--hue-concentrate)) drop-shadow(0 0 100px var(--hue-warning)) hue-rotate(216deg);
+        transform: scale(1.6) rotate(60deg) translateX(-12px);
+    }
+
+    40% {
+        filter: brightness(280%) drop-shadow(0 0 35px var(--hue-relax)) drop-shadow(0 0 70px var(--hue-success)) hue-rotate(288deg);
+        transform: scale(1.1) rotate(-45deg) translateY(8px);
+    }
+
+    50% {
+        filter: brightness(400%) drop-shadow(0 0 60px var(--hue-danger)) drop-shadow(0 0 120px var(--hue-info)) hue-rotate(360deg);
+        transform: scale(1.8) rotate(90deg) translateX(5px) translateY(-20px);
+    }
+
+    60% {
+        filter: brightness(320%) drop-shadow(0 0 45px var(--hue-secondary)) drop-shadow(0 0 90px var(--hue-primary)) hue-rotate(432deg);
+        transform: scale(1.3) rotate(-60deg) translateX(-8px);
+    }
+
+    70% {
+        filter: brightness(450%) drop-shadow(0 0 70px var(--hue-accent)) drop-shadow(0 0 140px var(--hue-energize)) hue-rotate(504deg);
+        transform: scale(2.0) rotate(120deg) translateY(-25px);
+    }
+
+    80% {
+        filter: brightness(380%) drop-shadow(0 0 55px var(--hue-nightlight)) drop-shadow(0 0 110px var(--hue-concentrate)) hue-rotate(576deg);
+        transform: scale(1.5) rotate(-90deg) translateX(15px);
+    }
+
+    90% {
+        filter: brightness(500%) drop-shadow(0 0 80px var(--hue-warning)) drop-shadow(0 0 160px var(--hue-relax)) hue-rotate(648deg);
+        transform: scale(2.2) rotate(150deg) translateY(-30px) translateX(-10px);
+    }
+
+    100% {
+        filter: brightness(100%) drop-shadow(0 0 0px transparent) hue-rotate(720deg);
+        transform: scale(1) rotate(180deg);
+    }
+}
+
+.navbar-brand:active .navbar-logo img {
+    animation: navbar-logo-glow 1.2s ease-in-out;
+    transform: scale(1.1);
+}
+
+
+/* Philips Hue-style pulsing status light */
+.navbar-status-light {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    background-color: var(--dark-muted-text);
+    transition: background-color var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+
+.navbar-status-light.active {
+    background-color: var(--hue-success);
+    box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.3);
+    animation: hue-pulse 2s infinite;
+}
+
+
+@keyframes hue-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(46, 204, 113, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+    }
+}
+
+
+/* ========== Connection Status Indicator ========== */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 200, 255, 0.4);
+    }
+
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(0, 200, 255, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 200, 255, 0);
+    }
+}
+
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 8px;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Connected: Hue blue pulse */
+.status-indicator.connected {
+    background-color: var(--hue-primary);
+    animation: pulse 2s infinite;
+}
+
+
+/* Disconnected: red pulse */
+.status-indicator.disconnected {
+    background-color: var(--hue-danger);
+    animation: pulse 2s infinite;
+}
+
+
+.status-indicator.connected::after,
+.status-indicator.disconnected::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+
+#pulseContainer {
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+
+/* ========== Buttons & Controls - Philips Hue Style ========== */
+.btn {
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    font-weight: 500;
+    box-shadow: none;
+    position: relative;
+    overflow: hidden;
+    padding: 0.5rem 1.25rem;
+    font-size: var(--font-normal);
+    letter-spacing: 0.02em;
+
+
+}
+
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+
+/* Ripple effect like in Hue app */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+
+.btn:active::after {
+    opacity: 0.4;
+    transform: scale(20, 20) translate(-50%, -50%);
+    transition: transform 0.5s, opacity 1s;
+}
+
+
+.btn-primary {
+    background-color: var(--hue-primary);
+    border-color: var(--hue-primary);
+    color: white;
+}
+
+
+.btn-primary:hover {
+    background-color: var(--hue-primary-hover);
+    border-color: var(--hue-primary-hover);
+}
+
+
+.btn-secondary {
+    background-color: var(--hue-secondary);
+    border-color: var(--hue-secondary);
+    color: white;
+}
+
+
+.btn-secondary:hover {
+    background-color: var(--hue-secondary-hover);
+    border-color: var(--hue-secondary-hover);
+}
+
+
+.btn-accent {
+    background-color: var(--hue-accent);
+    border-color: var(--hue-accent);
+    color: white;
+}
+
+
+.btn-accent:hover {
+    background-color: var(--hue-accent-hover);
+    border-color: var(--hue-accent-hover);
+}
+
+
+.btn-success {
+    background-color: var(--hue-success);
+    border-color: var(--hue-success);
+    color: white;
+}
+
+
+.btn-danger {
+    background-color: var(--hue-danger);
+    border-color: var(--hue-danger);
+    color: white;
+}
+
+
+.btn-outline-primary {
+    color: white;
+    border-color: var(--hue-primary);
+    background-color: var(--hue-primary);
+
+
+}
+
+
+.btn-outline-primary:hover {
+
+
+    border-color: var(--hue-primary);
+
+
+
+}
+
+
+.dark-mode .btn-outline-primary {
+
+
+    border-color: var(--hue-primary);
+}
+
+
+.dark-mode .btn-outline-primary:hover {
+    color: white;
+    background-color: var(--hue-primary);
+}
+
+
+/* Running script button animation - amber pulse like Hue scenes changing */
+.btn-running {
+    background-color: var(--hue-warning) !important;
+    border-color: var(--hue-warning) !important;
+    animation: pulse-warning 2s infinite;
+}
+
+
+@keyframes pulse-warning {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 176, 70, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 176, 70, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 176, 70, 0);
+    }
+}
+
+
+/* Light control buttons - styled like Hue app controls */
+.light-control-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+
+.light-control-button {
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-medium);
+    flex: 1;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    font-weight: 500;
+}
+
+
+/* On state - Hue warm light color */
+.light-control-button.on {
+    background-color: var(--hue-secondary);
+    border-color: var(--hue-secondary);
+    color: white;
+}
+
+
+.light-control-button.on:hover {
+    background-color: var(--hue-secondary-hover);
+    border-color: var(--hue-secondary-hover);
+}
+
+
+/* Off state - dark neutral */
+.light-control-button.off {
+    background-color: var(--dark-card-bg);
+    border-color: var(--dark-border);
+    color: var(--dark-text);
+}
+
+
+.light-control-button.off:hover {
+    background-color: var(--dark-hover);
+}
+
+
+/* Light radial effect when pressed - like Hue app */
+.light-control-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+    pointer-events: none;
+}
+
+
+.light-control-button.on:active::after {
+    opacity: 0.6;
+}
+
+
+/* Emergency stop button - big red button with alert styling */
+#emergencyStopBtn {
+    background: linear-gradient(135deg, var(--hue-danger), #FF3636);
+    border: none;
+    color: white;
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+    animation: pulse-emergency 2s infinite;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.5rem;
+}
+
+
+#emergencyStopBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+
+#emergencyStopBtn:active {
+    transform: translateY(1px);
+}
+
+
+@keyframes pulse-emergency {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 94, 91, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 94, 91, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 94, 91, 0);
+    }
+}
+
+
+/* Theme Toggle Switch - Hue day/night cycle styling */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: var(--radius-full);
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: background-color var(--transition-medium);
+}
+
+
+.dark-mode .theme-toggle {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.theme-toggle .fa-sun {
+    color: var(--hue-secondary);
+    /* Warm light color like Hue warm white */
+    transition: color var(--transition-medium), transform var(--transition-medium);
+}
+
+
+.theme-toggle .fa-moon {
+    color: var(--hue-nightlight);
+    /* Purple like Hue night light */
+    transition: color var(--transition-medium), transform var(--transition-medium);
+}
+
+
+.theme-toggle:hover .fa-sun {
+    transform: rotate(45deg);
+}
+
+
+.theme-toggle:hover .fa-moon {
+    transform: rotate(-45deg);
+}
+
+
+.form-switch .form-check-input {
+    width: 40px;
+    height: 22px;
+    margin-top: 0;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+    background-position: left center;
+    border-radius: var(--radius-full);
+    transition: background-position var(--transition-medium), background-color var(--transition-medium);
+}
+
+
+.form-switch .form-check-input:checked {
+    background-color: var(--hue-primary);
+    border-color: var(--hue-primary);
+    background-position: right center;
+}
+
+
+.form-switch .form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 200, 255, 0.25);
+}
+
+
+/* ========== Cards - Philips Hue App Style ========== */
+.card {
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+    border: none;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+
+.dark-mode .card {
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+}
+
+
+.light-mode .card {
+    background-color: var(--light-card-bg);
+    color: var(--light-text);
+}
+
+
+.card-header,
+.card-footer {
+    padding: 1rem;
+    transition: background-color var(--transition-medium);
+    border-width: 1px;
+}
+
+
+.card-header {
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+
+.dark-mode .card-header,
+.dark-mode .card-footer {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--dark-border);
+}
+
+
+.light-mode .card-header,
+.light-mode .card-footer {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-color: var(--light-border);
+}
+
+
+/* Editor card specific styles - make it more prominent */
+.editor-card {
+    box-shadow: var(--shadow-md);
+}
+
+
+.editor-card .card-body {
+    padding: 0;
+}
+
+
+.editor-card .card-header {
+    background: linear-gradient(90deg, var(--hue-primary), var(--hue-accent));
+    color: white;
+    border: none;
+}
+
+
+/* ========== Console - styled like Hue debug console ========== */
+.console-card {
+    transition: all var(--transition-medium);
+}
+
+
+.console-card.expanded {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1050;
+    margin: 0;
+    max-width: none;
+    box-shadow: var(--shadow-lg);
+}
+
+
+.console-card.expanded .card-body {
+    height: calc(100% - 110px) !important;
+    overflow: auto;
+}
+
+
+.console-card .card-header {
+    cursor: pointer;
+    position: relative;
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+}
+
+
+.console-resize-toggle {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+
+.console-resize-toggle:hover {
+    color: var(--hue-primary);
+    transform: translateY(-50%) scale(1.1);
+}
+
+
+#outputConsole {
+    min-height: 200px;
+    max-height: 350px;
+    overflow: auto;
+    font-family: 'Fira Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    padding: 1rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+    transition: all var(--transition-medium);
+    line-height: 1.5;
+    font-size: 0.9rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+
+#outputConsole::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+#outputConsole::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+#outputConsole::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+
+
+.console-card.expanded #outputConsole {
+    min-height: 100%;
+    max-height: none;
+}
+
+
+/* Console output styling - colorized like Hue app with meaningful colors */
+.console-success {
+    color: var(--hue-success);
+    font-weight: bold;
+}
+
+
+.console-error {
+    color: var(--hue-danger);
+    font-weight: bold;
+}
+
+
+.console-warning {
+    color: var(--hue-warning);
+    font-weight: bold;
+}
+
+
+.console-info {
+    color: var(--hue-primary);
+}
+
+
+/* Light action colorization */
+.console-light {
+    color: var(--hue-secondary);
+    /* Warm yellow/amber like Hue warm white */
+}
+
+
+.console-repeat {
+    color: var(--hue-nightlight);
+    /* Purple like Hue scene */
+}
+
+
+.console-color {
+    color: var(--hue-concentrate);
+    /* Cyan like 'concentrate' scene */
+}
+
+
+.console-transition {
+    color: var(--hue-accent);
+    /* Pink like color loop transition */
+}
+
+
+.console-scene {
+    color: var(--hue-energize);
+    /* Blue like 'energize' scene */
+}
+
+
+.console-comment {
+    color: var(--dark-muted-text);
+    font-style: italic;
+}
+
+
+/* ========== CodeMirror Customization - Philips Hue Style ========== */
+.CodeMirror {
+    height: 450px;
+    font-family: 'Fira Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 14px;
+    border-radius: 0;
+    transition: all var(--transition-medium);
+    line-height: 1.6;
+}
+
+
+.CodeMirror-focused {
+    box-shadow: inset 0 0 0 1px var(--hue-primary);
+}
+
+
+/* Light theme styles */
+.light-mode .CodeMirror {
+    background-color: var(--light-card-bg);
+    color: var(--light-text);
+}
+
+
+.light-mode .CodeMirror-gutters {
+    background-color: var(--light-input-bg);
+    border-color: var(--light-border);
+}
+
+
+/* Dark theme styles */
+.dark-mode .CodeMirror {
+    background-color: var(--dark-input-bg);
+    color: var(--dark-text);
+}
+
+
+.dark-mode .CodeMirror-gutters {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: var(--dark-border);
+}
+
+
+/* Syntax highlighting - Hue app inspired colors */
+.cm-s-default .cm-keyword {
+    color: var(--hue-primary);
+}
+
+.cm-s-default .cm-atom {
+    color: var(--hue-accent);
+}
+
+.cm-s-default .cm-number {
+    color: var(--hue-warning);
+}
+
+.cm-s-default .cm-def {
+    color: var(--hue-energize);
+}
+
+.cm-s-default .cm-variable {
+    color: var(--dark-text);
+}
+
+.cm-s-default .cm-variable-2 {
+    color: var(--hue-concentrate);
+}
+
+.cm-s-default .cm-variable-3,
+.cm-s-default .cm-type {
+    color: var(--hue-secondary);
+}
+
+.cm-s-default .cm-comment {
+    color: var(--dark-muted-text);
+    font-style: italic;
+}
+
+.cm-s-default .cm-string {
+    color: var(--hue-relax);
+}
+
+.cm-s-default .cm-string-2 {
+    color: var(--hue-relax);
+}
+
+.cm-s-default .cm-meta {
+    color: var(--dark-muted-text);
+}
+
+.cm-s-default .cm-operator {
+    color: var(--hue-accent);
+}
+
+.cm-s-default .cm-bracket {
+    color: var(--dark-text);
+}
+
+.cm-s-default .cm-tag {
+    color: var(--hue-danger);
+}
+
+.cm-s-default .cm-attribute {
+    color: var(--hue-primary);
+}
+
+.cm-s-default .cm-header {
+    color: var(--hue-accent);
+}
+
+.cm-s-default .cm-quote {
+    color: var(--hue-success);
+}
+
+.cm-s-default .cm-hr {
+    color: var(--dark-border);
+}
+
+.cm-s-default .cm-link {
+    color: var(--hue-primary);
+}
+
+
+/* Auto-complete styling - Hue app-like dropdowns */
+.CodeMirror-hints {
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-radius: var(--radius-md);
+    max-height: 20em;
+    overflow-y: auto;
+    box-shadow: var(--shadow-md);
+    background-color: var(--light-card-bg);
+    border: 1px solid var(--light-border);
+    font-family: 'Fira Code', monospace;
+}
+
+
+.dark-mode .CodeMirror-hints {
+    background-color: var(--dark-card-bg);
+    border-color: var(--dark-border);
+}
+
+
+.CodeMirror-hint {
+    margin: 0;
+    padding: 8px 12px;
+    white-space: nowrap;
+    color: var(--light-text);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+
+.dark-mode .CodeMirror-hint {
+    color: var(--dark-text);
+}
+
+
+.CodeMirror-hint-active {
+    background-color: var(--hue-primary);
+    color: white !important;
+}
+
+
+/* Highlight for inserted code - color transition like Hue scene changes */
+.inserted-code-highlight {
+    background-color: rgba(0, 200, 255, 0.2);
+    animation: fadeOutHighlight 1s forwards;
+}
+
+
+@keyframes fadeOutHighlight {
+    from {
+        background-color: rgba(0, 200, 255, 0.2);
+    }
+
+    to {
+        background-color: transparent;
+    }
+}
+
+
+/* ========== Command Gallery & Color Picker - Styled like Hue scenes interface ========== */
+.accordion {
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+
+
+
+
+
+.accordion-item {
+    background-color: transparent;
+    border: none;
+    margin-bottom: 8px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+
+.dark-mode .accordion-item {
+    border-color: var(--dark-border);
+}
+
+
+.accordion-button {
+    border-radius: var(--radius-md);
+    box-shadow: none !important;
+    transition: all var(--transition-medium);
+    padding: 1rem;
+    font-weight: 500;
+}
+
+
+.dark-mode .accordion-button {
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+}
+
+
+.light-mode .accordion-button {
+    background-color: var(--light-card-bg);
+    color: var(--light-text);
+}
+
+
+/* Hue-styled active buttons with blue gradient */
+.accordion-button:not(.collapsed) {
+    background: linear-gradient(90deg, var(--hue-primary), var(--hue-concentrate));
+    color: white;
+}
+
+
+.accordion-button:hover {
+    background-color: rgba(0, 200, 255, 0.1);
+}
+
+
+.accordion-button:not(.collapsed):hover {
+    background: linear-gradient(90deg, var(--hue-primary-hover), var(--hue-concentrate));
+}
+
+
+.dark-mode .accordion-collapse {
+    background-color: var(--dark-card-bg);
+}
+
+
+.light-mode .accordion-collapse {
+    background-color: var(--light-card-bg);
+}
+
+
+/* Code Examples - Styled like Hue scene cards */
+.code-example {
+    position: relative;
+    margin-bottom: 12px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all var(--transition-medium);
+    box-shadow: var(--shadow-sm);
+}
+
+
+.code-example:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+
+.code-example code {
+    display: block;
+    padding: 12px !important;
+    border-radius: var(--radius-md);
+    margin: 0;
+    font-family: 'Fira Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 13px;
+    transition: background-color var(--transition-medium);
+    line-height: 1.5;
+}
+
+
+.dark-mode .code-example code {
+    background-color: var(--dark-input-bg) !important;
+    color: var(--dark-text);
+}
+
+
+.light-mode .code-example code {
+    background-color: var(--light-input-bg) !important;
+    color: var(--light-text);
+}
+
+
+.insert-btn {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--hue-primary), var(--hue-nightlight));
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    padding: 0;
+    font-size: 14px;
+    box-shadow: var(--shadow-sm);
+    z-index: 2;
+    opacity: 0;
+}
+
+
+.code-example:hover .insert-btn {
+    opacity: 1;
+}
+
+
+.insert-btn:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, var(--hue-primary-hover), var(--hue-accent));
+}
+
+
+.insert-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* Command cards - styled like Hue scene cards */
+.command-card {
+    background-color: transparent;
+    transition: all var(--transition-medium);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--light-border);
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+
+.dark-mode .command-card {
+    border-color: var(--dark-border);
+}
+
+
+.command-card:hover {
+    border-color: var(--hue-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* Subtle glow effect on hover like Hue scenes */
+.command-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, var(--hue-primary-hover) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+    z-index: -1;
+}
+
+
+.command-card:hover::before {
+    opacity: 0.07;
+}
+
+
+/* Color Grid - styled like Philips Hue color picker */
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+
+.color-swatch {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all var(--transition-medium);
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+
+.dark-mode .color-swatch {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+.color-swatch:hover {
+    transform: scale(1.1);
+    z-index: 10;
+    box-shadow: var(--shadow-md);
+}
+
+
+.color-swatch:active {
+    transform: scale(0.95);
+}
+
+
+/* Add a subtle wave effect like Hue app color selection */
+.color-swatch::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.7) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+}
+
+
+.color-swatch:hover::before {
+    opacity: 0.3;
+}
+
+
+.color-swatch::after {
+    content: attr(data-color);
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+    pointer-events: none;
+    z-index: 20;
+}
+
+
+.color-swatch:hover::after {
+    opacity: 1;
+}
+
+
+.color-picker-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+
+.color-picker {
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid var(--light-border);
+    transition: all var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+
+.color-picker:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-sm);
+}
+
+
+.dark-mode .color-picker {
+    background-color: var(--dark-input-bg);
+    border-color: var(--dark-border);
+}
+
+
+/* Template cards - styled like Hue scene presets */
+.template-card {
+    transition: all var(--transition-medium);
+    border-radius: var(--radius-md);
+    padding: 15px !important;
+    border: 1px solid var(--light-border);
+    position: relative;
+    background-color: var(--light-card-bg);
+    overflow: hidden;
+}
+
+
+.dark-mode .template-card {
+    border-color: var(--dark-border);
+    background-color: var(--dark-card-bg);
+}
+
+
+.template-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--hue-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* Subtle colored gradient overlay like Hue scenes */
+.template-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--hue-primary), var(--hue-accent));
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+}
+
+
+.template-card:hover::before {
+    opacity: 1;
+}
+
+
+/* ========== Modals - Philips Hue app style pop-ups ========== */
+.modal-content {
+    border-radius: var(--radius-lg);
+    border: none;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-medium);
+    background-color: var(--light-card-bg);
+    overflow: hidden;
+}
+
+
+.dark-mode .modal-content {
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+}
+
+
+.dark-mode .modal-header,
+.dark-mode .modal-footer {
+    border-color: var(--dark-border);
+}
+
+
+.dark-mode .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+
+.modal-header {
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--light-border);
+}
+
+
+.dark-mode .modal-header {
+    border-bottom: 1px solid var(--dark-border);
+}
+
+
+.modal-footer {
+    border-bottom-left-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
+    padding: 1.25rem;
+    border-top: 1px solid var(--light-border);
+}
+
+
+.dark-mode .modal-footer {
+    border-top: 1px solid var(--dark-border);
+}
+
+
+/* Script list - styled like Hue scenes library */
+.list-group-item {
+    border-radius: var(--radius-sm) !important;
+    margin-bottom: 5px;
+    transition: all var(--transition-fast);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background-color: var(--light-card-bg);
+    border: 1px solid var(--light-border);
+}
+
+
+.dark-mode .list-group-item {
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+    border-color: var(--dark-border);
+}
+
+
+.dark-mode .list-group-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+
+.light-mode .list-group-item:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+
+.list-group-item:hover {
+    transform: translateX(5px);
+}
+
+
+.script-actions {
+    opacity: 0.5;
+    transition: opacity var(--transition-fast);
+    display: flex;
+    gap: 10px;
+}
+
+
+.list-group-item:hover .script-actions {
+    opacity: 1;
+}
+
+
+.script-action-btn {
+    background: none;
+    border: none;
+    padding: 5px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--light-text);
+}
+
+
+.dark-mode .script-action-btn {
+    color: var(--dark-text);
+}
+
+
+.script-action-btn:hover {
+    background-color: rgba(0, 200, 255, 0.1);
+    color: var(--hue-primary);
+    transform: scale(1.1);
+}
+
+
+/* ========== Notifications - Philips Hue toast notifications ========== */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    max-width: 350px;
+    background-color: var(--light-card-bg);
+    color: var(--light-text);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 0;
+    overflow: hidden;
+    z-index: 1060;
+    animation: slide-in-right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+.dark-mode .notification {
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+}
+
+
+.notification-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 100%;
+    padding: 16px 0;
+    font-size: 1.5rem;
+}
+
+
+.notification-success .notification-icon {
+    background-color: var(--hue-success);
+    color: white;
+}
+
+
+.notification-error .notification-icon {
+    background-color: var(--hue-danger);
+    color: white;
+}
+
+
+.notification-warning .notification-icon {
+    background-color: var(--hue-warning);
+    color: white;
+}
+
+
+.notification-info .notification-icon {
+    background-color: var(--hue-primary);
+    color: white;
+}
+
+
+.notification-content {
+    padding: 12px 16px;
+    flex-grow: 1;
+}
+
+
+.notification-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+
+.notification-message {
+    font-size: var(--font-small);
+    opacity: 0.8;
+}
+
+
+.notification-close {
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.5;
+    transition: opacity var(--transition-fast);
+}
+
+
+.notification-close:hover {
+    opacity: 1;
+}
+
+
+/* Ripple effect for notification close like in Hue app */
+.notification-close::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 100%;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+
+.notification-close:active::after {
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+/* ========== Auto-save Recovery - gentle notification style ========== */
+.auto-save-recovery {
+    margin-bottom: 0;
+}
+
+
+.auto-save-recovery .alert {
+    border-radius: 0;
+    margin-bottom: 0;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 200, 255, 0.1);
+    color: var(--light-text);
+}
+
+
+.dark-mode .auto-save-recovery .alert {
+    background-color: rgba(0, 200, 255, 0.15);
+    color: var(--dark-text);
+    border-bottom: 1px solid var(--dark-border);
+}
+
+
+.auto-save-recovery .alert-link {
+    color: var(--hue-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+
+.auto-save-recovery .alert-link:hover {
+    text-decoration: underline;
+}
+
+
+/* ========== Tour Styling - Guided tutorial ========== */
+.shepherd-theme-custom {
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    background-color: var(--light-card-bg);
+    color: var(--light-text);
+    overflow: hidden;
+}
+
+
+.dark-mode .shepherd-theme-custom {
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+}
+
+/* Fix for the terrible cancel icon styling - comprehensive selectors */
+.shepherd-element .shepherd-cancel-icon,
+.shepherd-modal .shepherd-cancel-icon,
+.shepherd-element .shepherd-header .shepherd-cancel-icon,
+.shepherd-element button[aria-label="Close Tour"],
+.shepherd-element .shepherd-cancel-link,
+.shepherd-element [data-shepherd-step-id] .shepherd-cancel-icon,
+.shepherd-element .shepherd-content .shepherd-cancel-icon {
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    width: 32px !important;
+    height: 32px !important;
+    cursor: pointer !important;
+    border: none !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    transition: all var(--transition-fast) !important;
+    /* Hide direct text content of the button to prevent double 'x' */
+    color: transparent !important;
+    font-size: 0 !important;
+    /* End of hiding direct text content */
+    z-index: 1000 !important;
+    line-height: 1 !important;
+    /* This is for the container, ::before handles its own line-height */
+    text-decoration: none !important;
+    font-family: "Arial", sans-serif !important;
+    /* Fallback, but ::before should be primary */
+}
+
+.shepherd-element .shepherd-cancel-icon:hover,
+.shepherd-modal .shepherd-cancel-icon:hover,
+.shepherd-element .shepherd-header .shepherd-cancel-icon:hover,
+.shepherd-element button[aria-label="Close Tour"]:hover,
+.shepherd-element .shepherd-cancel-link:hover,
+.shepherd-element [data-shepherd-step-id] .shepherd-cancel-icon:hover,
+.shepherd-element .shepherd-content .shepherd-cancel-icon:hover {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
+    transform: scale(1.1) !important;
+}
+
+.shepherd-element .shepherd-cancel-icon:active,
+.shepherd-modal .shepherd-cancel-icon:active,
+.shepherd-element .shepherd-header .shepherd-cancel-icon:active,
+.shepherd-element button[aria-label="Close Tour"]:active,
+.shepherd-element .shepherd-cancel-link:active,
+.shepherd-element [data-shepherd-step-id] .shepherd-cancel-icon:active,
+.shepherd-element .shepherd-content .shepherd-cancel-icon:active {
+    transform: scale(0.95) !important;
+    background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+
+
+/* If the cancel icon has text content, ensure it shows properly */
+.shepherd-element .shepherd-cancel-icon,
+.shepherd-modal .shepherd-cancel-icon,
+.shepherd-element button[aria-label="Close Tour"],
+.shepherd-element .shepherd-cancel-link,
+.shepherd-element [data-shepherd-step-id] .shepherd-cancel-icon,
+.shepherd-element .shepherd-content .shepherd-cancel-icon {
+    font-family: "Arial", sans-serif !important;
+    font-size: 24px !important;
+    font-weight: normal !important;
+}
+
+/* Dark mode adjustments for cancel icon */
+.dark-mode .shepherd-element .shepherd-cancel-icon,
+.dark-mode .shepherd-modal .shepherd-cancel-icon,
+.dark-mode .shepherd-element .shepherd-header .shepherd-cancel-icon,
+.dark-mode .shepherd-element button[aria-label="Close Tour"],
+.dark-mode .shepherd-element .shepherd-cancel-link,
+.dark-mode .shepherd-element [data-shepherd-step-id] .shepherd-cancel-icon,
+.dark-mode .shepherd-element .shepherd-content .shepherd-cancel-icon {
+    background: rgba(0, 0, 0, 0.3) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.dark-mode .shepherd-element .shepherd-cancel-icon:hover,
+.dark-mode .shepherd-modal .shepherd-cancel-icon:hover,
+.dark-mode .shepherd-element .shepherd-header .shepherd-cancel-icon:hover,
+.dark-mode .shepherd-element button[aria-label="Close Tour"]:hover,
+.dark-mode .shepherd-element .shepherd-cancel-link:hover,
+.dark-mode .shepherd-element [data-shepherd-step-id] .shepherd-cancel-icon:hover,
+.dark-mode .shepherd-element .shepherd-content .shepherd-cancel-icon:hover {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    color: white !important;
+}
+
+.dark-mode .shepherd-element .shepherd-cancel-icon::before,
+.dark-mode .shepherd-modal .shepherd-cancel-icon::before,
+.dark-mode .shepherd-element .shepherd-header .shepherd-cancel-icon::before,
+.dark-mode .shepherd-element button[aria-label="Close Tour"]::before,
+.dark-mode .shepherd-element .shepherd-cancel-link::before,
+.dark-mode .shepherd-element [data-shepherd-step-id] .shepherd-cancel-icon::before,
+.dark-mode .shepherd-element .shepherd-content .shepherd-cancel-icon::before {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.dark-mode .shepherd-element .shepherd-cancel-icon:hover::before,
+.dark-mode .shepherd-modal .shepherd-cancel-icon:hover::before,
+.dark-mode .shepherd-element .shepherd-header .shepherd-cancel-icon:hover::before,
+.dark-mode .shepherd-element button[aria-label="Close Tour"]:hover::before,
+.dark-mode .shepherd-element .shepherd-cancel-link:hover::before,
+.dark-mode .shepherd-element [data-shepherd-step-id] .shepherd-cancel-icon:hover::before,
+.dark-mode .shepherd-element .shepherd-content .shepherd-cancel-icon:hover::before {
+    color: white !important;
+}
+
+
+.shepherd-header {
+    background: linear-gradient(90deg, var(--hue-primary), var(--hue-accent));
+    color: white;
+    padding: 12px 16px;
+    position: relative;
+}
+
+.shepherd-title {
+    font-weight: 600;
+    font-size: var(--font-medium);
+    margin-right: 40px;
+    /* Make room for cancel icon */
+}
+
+.shepherd-text {
+    padding: 16px;
+    line-height: 1.6;
+}
+
+.shepherd-footer {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.shepherd-button {
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.shepherd-button-primary {
+    background-color: var(--hue-primary);
+    color: white;
+}
+
+.shepherd-button-primary:hover {
+    background-color: var(--hue-primary-hover);
+}
+
+.shepherd-button-secondary {
+    background-color: transparent;
+    color: var(--light-text);
+}
+
+.dark-mode .shepherd-button-secondary {
+    color: var(--dark-text);
+}
+
+.shepherd-button-secondary:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .shepherd-button-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Highlight for tour targets */
+.shepherd-highlight {
+    box-shadow: 0 0 0 4px rgba(0, 200, 255, 0.3) !important;
+}
+
+
+/* ========== Keyboard Shortcuts Modal - Philips Hue style help interface ========== */
+.shortcuts-table {
+    width: 100%;
+}
+
+
+.shortcuts-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--light-border);
+}
+
+
+.dark-mode .shortcuts-table td {
+    border-color: var(--dark-border);
+}
+
+
+.shortcuts-table tr:last-child td {
+    border-bottom: none;
+}
+
+
+.shortcut-key {
+    display: inline-block;
+    padding: 3px 8px;
+    margin: 0 2px;
+    border-radius: var(--radius-sm);
+    background-color: var(--light-input-bg);
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+.dark-mode .shortcut-key {
+    background-color: var(--dark-input-bg);
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.3);
+}
+
+
+/* ========== Forms - Philips Hue style inputs ========== */
+.form-control,
+.form-select {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--light-border);
+    padding: 0.5rem 0.75rem;
+    transition: all var(--transition-fast);
+    background-color: var(--light-input-bg);
+    color: var(--light-text);
+}
+
+
+.dark-mode .form-control,
+.dark-mode .form-select {
+    background-color: var(--dark-input-bg);
+    border-color: var(--dark-border);
+    color: var(--dark-text);
+}
+
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--hue-primary);
+    box-shadow: 0 0 0 0.2rem rgba(0, 200, 255, 0.25);
+}
+
+
+.form-label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+
+/* Custom Hue range slider */
+.form-range {
+    height: 6px;
+    padding: 0;
+    appearance: none;
+    background-color: var(--light-border);
+    border-radius: var(--radius-full);
+}
+
+
+.dark-mode .form-range {
+    background-color: var(--dark-border);
+}
+
+
+.form-range::-webkit-slider-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--hue-primary);
+    border: none;
+    cursor: pointer;
+    appearance: none;
+    transition: all var(--transition-fast);
+}
+
+
+.form-range::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--hue-primary);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+
+.form-range::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 4px rgba(0, 200, 255, 0.3);
+}
+
+
+.form-range::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 4px rgba(0, 200, 255, 0.3);
+}
+
+
+/* ========== Responsive Styles ========== */
+@media (max-width: 992px) {
+    .color-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+
+    .CodeMirror {
+        height: 400px;
+    }
+
+
+    .command-card {
+        padding: 12px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .CodeMirror {
+        height: 350px;
+    }
+
+
+    .console-card:not(.expanded) #outputConsole {
+        min-height: 150px;
+        max-height: 250px;
+    }
+
+
+    .navbar .btn {
+        padding: 0.375rem 0.5rem;
+        font-size: 0.875rem;
+    }
+
+
+    .navbar .btn i {
+        margin-right: 0 !important;
+    }
+
+
+    .navbar .btn span {
+        display: none;
+    }
+
+
+    .color-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media (max-width: 576px) {
+    .color-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+
+    .light-control-buttons {
+        flex-direction: column;
+    }
+
+
+    .card-footer {
+        padding: 0.75rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+
+    .card-footer .btn {
+        flex: 1;
+        min-width: 100px;
+        font-size: 0.875rem;
+        padding: 0.375rem 0.5rem;
+    }
+
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+
+/* ========== Animations - Smooth transitions like Hue app ========== */
+.animate__animated {
+    animation-duration: 0.5s;
+}
+
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes fadeOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+}
+
+
+.animate__fadeInRight {
+    animation-name: fadeInRight;
+}
+
+
+.animate__fadeOutRight {
+    animation-name: fadeOutRight;
+}
+
+
+/* Philips Hue scene transition effect */
+@keyframes hueFade {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.hue-fade-in {
+    animation: hueFade 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+
+/* Floating help button - Hue style assistance */
+.floating-help-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--hue-primary), var(--hue-accent));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    z-index: 1040;
+    border: none;
+}
+
+
+.floating-help-btn:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 5px 15px rgba(0, 200, 255, 0.4);
+}
+
+
+.floating-help-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* Expanding ripple effect on click like Hue app */
+.floating-help-btn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+
+.floating-help-btn:active::after {
+    transform: scale(2);
+    opacity: 0;
+    transition: 0s;
+}
+
+
+/* ========== Color Temperature Slider - Hue White Ambiance Control ========== */
+.temp-slider-container {
+    margin: 20px 0;
+    padding: 10px 15px;
+    border-radius: var(--radius-md);
+    background-color: var(--light-input-bg);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+}
+
+
+.dark-mode .temp-slider-container {
+    background-color: var(--dark-input-bg);
+}
+
+
+.temp-slider-container:hover {
+    box-shadow: var(--shadow-md);
+}
+
+
+.temp-slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: var(--font-small);
+    color: var(--light-muted-text);
+}
+
+
+.dark-mode .temp-slider-labels {
+    color: var(--dark-muted-text);
+}
+
+
+.temp-slider {
+    width: 100%;
+    height: 20px;
+    appearance: none;
+    background: linear-gradient(90deg, #FF9B57, #FFE0B5, #F5FBFF, #CAEAFF);
+    border-radius: var(--radius-full);
+    outline: none;
+}
+
+
+.temp-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--hue-primary);
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+}
+
+
+.temp-slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--hue-primary);
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+}
+
+
+.temp-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(0, 200, 255, 0.2);
+}
+
+
+.temp-slider::-moz-range-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(0, 200, 255, 0.2);
+}
+
+
+/* ========== Scene Builder - Visual scene creation UI ========== */
+.scene-builder {
+    padding: 15px;
+    border-radius: var(--radius-md);
+    background-color: var(--light-card-bg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 20px;
+    border: 1px solid var(--light-border);
+}
+
+
+.dark-mode .scene-builder {
+    background-color: var(--dark-card-bg);
+    border-color: var(--dark-border);
+}
+
+
+.scene-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    background-color: var(--light-input-bg);
+    border: 1px solid var(--light-border);
+    transition: all var(--transition-fast);
+}
+
+
+.dark-mode .scene-step {
+    background-color: var(--dark-input-bg);
+    border-color: var(--dark-border);
+}
+
+
+.scene-step:hover {
+    border-color: var(--hue-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+
+.scene-step-handle {
+    cursor: grab;
+    color: var(--light-muted-text);
+}
+
+
+.dark-mode .scene-step-handle {
+    color: var(--dark-muted-text);
+}
+
+
+.scene-step-content {
+    flex-grow: 1;
+}
+
+
+.scene-step-actions {
+    display: flex;
+    gap: 5px;
+}
+
+
+.scene-step-btn {
+    background: none;
+    border: none;
+    border-radius: var(--radius-sm);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--light-muted-text);
+}
+
+
+.dark-mode .scene-step-btn {
+    color: var(--dark-muted-text);
+}
+
+
+.scene-step-btn:hover {
+    background-color: rgba(0, 200, 255, 0.1);
+    color: var(--hue-primary);
+}
+
+
+.scene-add-step {
+    width: 100%;
+    padding: 10px;
+    border: 2px dashed var(--light-border);
+    border-radius: var(--radius-sm);
+    background: none;
+    color: var(--light-muted-text);
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    margin-top: 15px;
+    font-size: var(--font-normal);
+}
+
+
+.dark-mode .scene-add-step {
+    border-color: var(--dark-border);
+    color: var(--dark-muted-text);
+}
+
+
+.scene-add-step:hover {
+    border-color: var(--hue-primary);
+    color: var(--hue-primary);
+    background-color: rgba(0, 200, 255, 0.05);
+}
+
+
+/* ========== Brightness Slider - Philips Hue style brightness control ========== */
+.brightness-slider-container {
+    margin: 20px 0;
+    padding: 10px 15px;
+    border-radius: var(--radius-md);
+    background-color: var(--light-input-bg);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+}
+
+
+.dark-mode .brightness-slider-container {
+    background-color: var(--dark-input-bg);
+}
+
+
+.brightness-slider-container:hover {
+    box-shadow: var(--shadow-md);
+}
+
+
+.brightness-slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+.brightness-slider-label {
+    font-weight: 500;
+    color: var(--light-text);
+}
+
+
+.dark-mode .brightness-slider-label {
+    color: var(--dark-text);
+}
+
+
+.brightness-slider-value {
+    background-color: var(--hue-primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-small);
+    font-weight: 600;
+}
+
+
+.brightness-slider {
+    width: 100%;
+    height: 20px;
+    appearance: none;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.9));
+    border-radius: var(--radius-full);
+    outline: none;
+}
+
+
+.dark-mode .brightness-slider {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.7));
+}
+
+
+.brightness-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--hue-primary);
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+}
+
+
+.brightness-slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--hue-primary);
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+}
+
+
+.brightness-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(0, 200, 255, 0.2);
+}
+
+
+.brightness-slider::-moz-range-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(0, 200, 255, 0.2);
+}
+
+
+/* ========== Color Wheel - Philips Hue color wheel picker ========== */
+.color-wheel-container {
+    margin: 15px auto;
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+
+.color-wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(red, orange, yellow, lime, aqua, blue, magenta, red);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    transition: transform var(--transition-medium);
+}
+
+
+.color-wheel:hover {
+    transform: scale(1.02);
+}
+
+
+.color-wheel-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid var(--light-border);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+}
+
+
+.dark-mode .color-wheel-center {
+    border-color: var(--dark-border);
+}
+
+
+.color-wheel-center:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: var(--shadow-md);
+}
+
+
+.color-wheel-selector {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid white;
+    box-shadow: var(--shadow-sm);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+
+/* ========== Presets Panel - Philips Hue scenes panel ========== */
+.presets-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    margin: 15px 0;
+}
+
+
+.preset-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all var(--transition-medium);
+    cursor: pointer;
+}
+
+
+.preset-item:hover {
+    transform: translateY(-2px);
+}
+
+
+.preset-color {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+    border: 2px solid transparent;
+}
+
+
+.preset-item:hover .preset-color {
+    box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.2);
+}
+
+
+.preset-item.active .preset-color {
+    border-color: var(--hue-primary);
+    box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.3);
+}
+
+
+.preset-name {
+    font-size: var(--font-small);
+    color: var(--light-text);
+    margin-top: 5px;
+}
+
+
+.dark-mode .preset-name {
+    color: var(--dark-text);
+}
+
+
+/* ========== Loading Animation - Philips Hue "Connecting to bridge" style loading ========== */
+.hue-loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+.hue-loader {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    position: relative;
+    animation: hue-color-cycle 2s linear infinite;
+}
+
+
+@keyframes hue-color-cycle {
+    0% {
+        background-color: var(--hue-primary);
+    }
+
+    25% {
+        background-color: var(--hue-accent);
+    }
+
+    50% {
+        background-color: var(--hue-secondary);
+    }
+
+    75% {
+        background-color: var(--hue-nightlight);
+    }
+
+    100% {
+        background-color: var(--hue-primary);
+    }
+}
+
+
+.hue-loader::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--light-card-bg);
+    transform: translate(-50%, -50%);
+}
+
+
+.dark-mode .hue-loader::before {
+    background-color: var(--dark-card-bg);
+}
+
+
+.hue-loader::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-top-color: var(--hue-primary);
+    transform: translate(-50%, -50%);
+    animation: rotate 1s linear infinite;
+}
+
+
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+
+.hue-loader-text {
+    font-size: var(--font-normal);
+    font-weight: 500;
+    color: var(--light-text);
+    text-align: center;
+}
+
+
+.dark-mode .hue-loader-text {
+    color: var(--dark-text);
+}
+
+
+/* ========== Time Picker - For scheduling lights ========== */
+.time-picker {
+    display: flex;
+    align-items: center;
+    border-radius: var(--radius-md);
+    background-color: var(--light-input-bg);
+    border: 1px solid var(--light-border);
+    overflow: hidden;
+    transition: all var(--transition-medium);
+}
+
+
+.dark-mode .time-picker {
+    background-color: var(--dark-input-bg);
+    border-color: var(--dark-border);
+}
+
+
+.time-picker:focus-within {
+    border-color: var(--hue-primary);
+    box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.2);
+}
+
+
+.time-picker-unit {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+}
+
+
+.time-picker-input {
+    width: 100%;
+    border: none;
+    background: none;
+    font-size: var(--font-large);
+    text-align: center;
+    color: var(--light-text);
+    appearance: none;
+    padding: 0;
+}
+
+
+.dark-mode .time-picker-input {
+    color: var(--dark-text);
+}
+
+
+.time-picker-input:focus {
+    outline: none;
+}
+
+
+.time-picker-separator {
+    font-size: var(--font-large);
+    font-weight: 600;
+    color: var(--light-muted-text);
+    padding: 0 5px;
+}
+
+
+.dark-mode .time-picker-separator {
+    color: var(--dark-muted-text);
+}
+
+
+.time-picker-period {
+    padding: 0 10px;
+    cursor: pointer;
+    font-size: var(--font-medium);
+    font-weight: 600;
+    color: var(--hue-primary);
+    transition: all var(--transition-fast);
+}
+
+
+.time-picker-period:hover {
+    color: var(--hue-primary-hover);
+    background-color: rgba(0, 200, 255, 0.1);
+}
+
+
+/* ========== Quick Actions Panel - Philips Hue quick scene buttons ========== */
+.quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+
+.quick-action-btn {
+    flex: 1;
+    min-width: 80px;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    background-color: var(--light-card-bg);
+    border: 1px solid var(--light-border);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+
+.dark-mode .quick-action-btn {
+    background-color: var(--dark-card-bg);
+    border-color: var(--dark-border);
+}
+
+
+.quick-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--hue-primary);
+}
+
+
+.quick-action-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: var(--hue-primary);
+    transition: all var(--transition-medium);
+}
+
+
+.quick-action-btn:hover .quick-action-icon {
+    transform: scale(1.1);
+}
+
+
+.quick-action-text {
+    font-size: var(--font-small);
+    font-weight: 500;
+    color: var(--light-text);
+}
+
+
+.dark-mode .quick-action-text {
+    color: var(--dark-text);
+}
+
+
+/* Variant colors for different action types */
+.quick-action-btn.relax .quick-action-icon {
+    color: var(--hue-relax);
+}
+
+
+.quick-action-btn.energize .quick-action-icon {
+    color: var(--hue-energize);
+}
+
+
+.quick-action-btn.concentrate .quick-action-icon {
+    color: var(--hue-concentrate);
+}
+
+
+.quick-action-btn.nightlight .quick-action-icon {
+    color: var(--hue-nightlight);
+}
+
+
+/* ========== Toggle Switches - Philips Hue style ========== */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+}
+
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+
+.toggle-switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--light-border);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-medium);
+}
+
+
+.dark-mode .toggle-switch-slider {
+    background-color: var(--dark-border);
+}
+
+
+.toggle-switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: all var(--transition-medium);
+}
+
+
+.toggle-switch input:checked+.toggle-switch-slider {
+    background-color: var(--hue-primary);
+}
+
+
+.toggle-switch input:focus+.toggle-switch-slider {
+    box-shadow: 0 0 1px var(--hue-primary);
+}
+
+
+.toggle-switch input:checked+.toggle-switch-slider:before {
+    transform: translateX(24px);
+}
+
+
+/* ========== Room Selection - Philips Hue room layout ========== */
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    margin: 15px 0;
+}
+
+
+.room-card {
+    background-color: var(--light-card-bg);
+    border-radius: var(--radius-md);
+    padding: 15px;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+    cursor: pointer;
+    border: 2px solid transparent;
+    text-align: center;
+}
+
+
+.dark-mode .room-card {
+    background-color: var(--dark-card-bg);
+}
+
+
+.room-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+
+.room-card.active {
+    border-color: var(--hue-primary);
+    box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.2);
+}
+
+
+.room-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: var(--light-muted-text);
+    transition: all var(--transition-medium);
+}
+
+
+.dark-mode .room-icon {
+    color: var(--dark-muted-text);
+}
+
+
+.room-card:hover .room-icon,
+.room-card.active .room-icon {
+    color: var(--hue-primary);
+}
+
+
+.room-name {
+    font-size: var(--font-normal);
+    font-weight: 500;
+    color: var(--light-text);
+}
+
+
+.dark-mode .room-name {
+    color: var(--dark-text);
+}
+
+
+/* ========== Tooltip - Philips Hue style info tooltips ========== */
+.hue-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+
+.hue-tooltip .hue-tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+    text-align: center;
+    border-radius: var(--radius-md);
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity var(--transition-medium), transform var(--transition-medium);
+    box-shadow: var(--shadow-md);
+    font-size: var(--font-small);
+    pointer-events: none;
+}
+
+
+.hue-tooltip .hue-tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--dark-card-bg) transparent transparent transparent;
+}
+
+
+.dark-mode .hue-tooltip .hue-tooltip-text {
+    background-color: var(--dark-input-bg);
+    border: 1px solid var(--dark-border);
+}
+
+
+.dark-mode .hue-tooltip .hue-tooltip-text::after {
+    border-color: var(--dark-input-bg) transparent transparent transparent;
+}
+
+
+.hue-tooltip:hover .hue-tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+
+/* ========== Additional Philips Hue-like Effects ========== */
+
+
+/* Subtle pattern background for cards */
+.pattern-bg {
+    background-color: var(--light-card-bg);
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14z' fill='%23f9f9f9' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+
+.dark-mode .pattern-bg {
+    background-color: var(--dark-card-bg);
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14z' fill='%23222' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+
+/* Glow effects for interactive elements */
+.hue-glow {
+    position: relative;
+    overflow: hidden;
+}
+
+
+.hue-glow::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, var(--hue-primary) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+.hue-glow:hover::before {
+    opacity: 0.1;
+}
+
+
+/* Color transition animation for scenes */
+.color-transition {
+    transition: background-color 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* Ambient light effect around cards */
+.ambient-light {
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.2);
+    transition: box-shadow var(--transition-medium);
+}
+
+
+.ambient-light:hover {
+    box-shadow: 0 0 30px rgba(0, 200, 255, 0.3);
+}
+
+
+/* Pulse animation for notifications */
+@keyframes hue-notification-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 200, 255, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 200, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 200, 255, 0);
+    }
+}
+
+
+.notification-pulse {
+    animation: hue-notification-pulse 2s infinite;
+}
+
+
+/* Gradient text like Philips Hue marketing */
+.hue-gradient-text {
+    background: linear-gradient(90deg, var(--hue-primary), var(--hue-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+
+/* Enhanced scrollbars for Philips Hue UI feel */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+
+
+.dark-mode ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 200, 255, 0.5);
+}
+
+
+/* ========== Print Styles ========== */
+@media print {
+    body {
+        background-color: white !important;
+        color: black !important;
+    }
+
+
+    .navbar,
+    .floating-help-btn,
+    .card-footer,
+    .console-resize-toggle {
+        display: none !important;
+    }
+
+
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+
+
+    .CodeMirror {
+        height: auto !important;
+    }
+
+
+    #outputConsole {
+        max-height: none !important;
+        border: 1px solid #ddd !important;
+    }
+
+
+    a {
+        text-decoration: underline !important;
+        color: #000 !important;
+    }
+}
+
+
+/* ========== Final Enhancement - Custom Color Schemes for Different Hue Scenes ========== */
+
+
+/* Energize theme - Blue tones like Hue Energize scene */
+body.theme-energize {
+    --hue-primary: #22A7F0;
+    --hue-primary-hover: #45D1FD;
+    --hue-accent: #00C8FF;
+}
+
+
+/* Relax theme - Warm orange tones like Hue Relax scene */
+body.theme-relax {
+    --hue-primary: #FF9D66;
+    --hue-primary-hover: #FFBB66;
+    --hue-accent: #FFA03D;
+}
+
+
+/* Read theme - Yellow tones like Hue Reading scene */
+body.theme-read {
+    --hue-primary: #FFCB65;
+    --hue-primary-hover: #FFD98A;
+    --hue-accent: #FFB046;
+}
+
+
+/* Nightlight theme - Purple tones like Hue nightlight */
+body.theme-nightlight {
+    --hue-primary: #A25FC4;
+    --hue-primary-hover: #B77ED0;
+    --hue-accent: #9B59FF;
+}
+
+
+/* Loading Overlay for Emergency Stop */
+#loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(70, 70, 70, 0.8);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+
+.overlay-content {
+    text-align: center;
+    color: white;
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-lg);
+}
+
+
+#overlayMessage {
+    margin-top: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    animation: blink 1s infinite;
+}
+
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Editing indicator styles */
+#editing-indicator {
+    border-left: 4px solid #0d6efd;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(13, 110, 253, 0.15);
+    animation: slideInDown 0.5s ease-out;
+}
+
+#editing-indicator.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+#editing-indicator strong {
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+#editing-indicator small {
+    opacity: 0.8;
+    font-style: italic;
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Save button highlighting when editing */
+#topSaveBtn.editing {
+    background-color: #fd7e14;
+    border-color: #fd7e14;
+    box-shadow: 0 0 0 0.2rem rgba(253, 126, 20, 0.25);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(253, 126, 20, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(253, 126, 20, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(253, 126, 20, 0);
+    }
+}
+
+/* Dashboard logo styling - same as navbar logo for consistency */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    height: 128px;
+    width: auto;
+    transition: transform var(--transition-medium), filter var(--transition-medium);
+}
+
+.logo:hover .logo-img,
+.sidebar-header:hover .logo-img {
+    transform: rotate(15deg) scale(1.02);
+    filter: brightness(110%) drop-shadow(0 0 5px var(--hue-primary-hover));
+}
+
+.logo:active .logo-img,
+.sidebar-header:active .logo-img {
+    animation: navbar-logo-glow 0.3s ease-out;
+    transform: scale(1.1);
+}

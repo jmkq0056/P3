@@ -1,0 +1,772 @@
+<!-- Hue Script Language Documentation Modal -->
+<div class="modal fade" id="languageDocsModal" tabindex="-1" aria-labelledby="languageDocsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="languageDocsModalLabel">
+                    <i class="fas fa-book me-2"></i>Hue Script Language Documentation
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="nav nav-tabs mb-3" id="docsTab" role="tablist">
+                    <button class="nav-link active" id="basics-tab" data-bs-toggle="tab" data-bs-target="#basics"
+                        type="button" role="tab" aria-controls="basics" aria-selected="true">
+                        <i class="fas fa-lightbulb me-1"></i> Language Basics
+                    </button>
+                    <button class="nav-link" id="lights-tab" data-bs-toggle="tab" data-bs-target="#lights" type="button"
+                        role="tab" aria-controls="lights" aria-selected="false">
+                        <i class="fas fa-lamp me-1"></i> Light Commands
+                    </button>
+                    <button class="nav-link" id="colors-tab" data-bs-toggle="tab" data-bs-target="#colors" type="button"
+                        role="tab" aria-controls="colors" aria-selected="false">
+                        <i class="fas fa-palette me-1"></i> Colors
+                    </button>
+                    <button class="nav-link" id="advanced-tab" data-bs-toggle="tab" data-bs-target="#advanced"
+                        type="button" role="tab" aria-controls="advanced" aria-selected="false">
+                        <i class="fas fa-code me-1"></i> Advanced Features
+                    </button>
+                    <button class="nav-link" id="troubleshooting-tab" data-bs-toggle="tab"
+                        data-bs-target="#troubleshooting" type="button" role="tab" aria-controls="troubleshooting"
+                        aria-selected="false">
+                        <i class="fas fa-wrench me-1"></i> Troubleshooting
+                    </button>
+                </div>
+
+                <div class="tab-content" id="docsTabContent">
+                    <!-- Language Basics Tab -->
+                    <div class="tab-pane fade show active" id="basics" role="tabpanel" aria-labelledby="basics-tab">
+                        <h4>Hue Script Language Basics</h4>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Syntax Rules</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Each command must end with a semicolon (<code>;</code>)</li>
+                                    <li>Commands are executed in sequence from top to bottom</li>
+                                    <li>Comments start with <code>//</code> and continue to the end of the line</li>
+                                    <li>Block commands (repeat, scene definitions) use curly braces <code>{ }</code>
+                                    </li>
+                                    <li>String values must be enclosed in double quotes (<code>"red"</code>)</li>
+                                    <li>Numeric values do not require quotes (<code>brightness 75;</code>)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Common Commands</h5>
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Command</th>
+                                            <th>Description</th>
+                                            <th>Example</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>lights on/off</td>
+                                            <td>Turn all lights on or off</td>
+                                            <td><code>lights on;</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>brightness</td>
+                                            <td>Set brightness (0-100)</td>
+                                            <td><code>brightness 75;</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>lights color</td>
+                                            <td>Set color for all lights</td>
+                                            <td><code>lights color "red";</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>wait</td>
+                                            <td>Pause execution</td>
+                                            <td><code>wait 5 sec;</code></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Time Units</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>The following time units are supported in wait commands and transitions:</p>
+                                <ul>
+                                    <li><code>ms</code> or <code>milliseconds</code> - Milliseconds</li>
+                                    <li><code>sec</code> or <code>seconds</code> - Seconds</li>
+                                    <li><code>min</code> or <code>minutes</code> - Minutes</li>
+                                    <li><code>hr</code> or <code>hours</code> - Hours</li>
+                                </ul>
+                                <p>Examples:</p>
+                                <ul>
+                                    <li><code>wait 500 ms;</code></li>
+                                    <li><code>wait 2.5 sec;</code></li>
+                                    <li><code>wait 1 minute;</code></li>
+                                    <li><code>transition "red" to "blue" over 10 seconds;</code></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Light Commands Tab -->
+                    <div class="tab-pane fade" id="lights" role="tabpanel" aria-labelledby="lights-tab">
+                        <h4>Light Control Commands</h4>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Finding Your Light IDs</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>To find the IDs of your Hue lights:</p>
+                                <ol>
+                                    <li>Go to the Dashboard and check the Light Status panel</li>
+                                    <li>Each light is listed with its name and ID number</li>
+                                    <li>Light IDs are integers starting from 1</li>
+                                    <li>You can also view all lights by clicking on "View All Lights" in the dashboard
+                                    </li>
+                                </ol>
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    Light IDs are assigned by the Hue Bridge and remain constant unless you reset the
+                                    bridge.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Individual Light Control</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Control specific lights using their ID:</p>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Command</th>
+                                            <th>Description</th>
+                                            <th>Example</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>light [id] on/off</td>
+                                            <td>Turn specific light on or off</td>
+                                            <td><code>light 3 on;</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>light [id] brightness</td>
+                                            <td>Set brightness for specific light</td>
+                                            <td><code>light 2 brightness 50;</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>light [id] color</td>
+                                            <td>Set color for specific light</td>
+                                            <td><code>light 1 color "blue";</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>light [id] transition</td>
+                                            <td>Color transition for specific light</td>
+                                            <td><code>light 4 transition "red" to "green" over 3 seconds;</code></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Light Groups</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Create and control groups of lights:</p>
+                                <ol>
+                                    <li>Define a group with a name and list of light IDs:
+                                        <code>define group livingRoom [1, 2, 3];</code>
+                                    </li>
+                                    <li>Control all lights in the group:
+                                        <ul>
+                                            <li><code>group livingRoom on;</code></li>
+                                            <li><code>group livingRoom brightness 75;</code></li>
+                                            <li><code>group livingRoom color "purple";</code></li>
+                                            <li><code>group livingRoom transition "warm" to "cool" over 5 seconds;</code>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                                <div class="alert alert-warning">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                    Group names must be unique and should not contain spaces or special characters.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Colors Tab -->
+                    <div class="tab-pane fade" id="colors" role="tabpanel" aria-labelledby="colors-tab">
+                        <h4>Colors and Color Transitions</h4>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Color Formats</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Hue Script supports the following color formats:</p>
+                                <ul>
+                                    <li><strong>Color Names</strong>: Common color names like "red", "blue", "green",
+                                        etc.</li>
+                                    <li><strong>Hex Codes</strong>: HTML color codes in the format "#RRGGBB"</li>
+                                    <li><strong>Special Values</strong>: "warm" and "cool" for warm and cool white tones
+                                    </li>
+                                </ul>
+                                <p>Examples:</p>
+                                <ul>
+                                    <li><code>lights color "red";</code></li>
+                                    <li><code>lights color "#00FF00";</code> (bright green)</li>
+                                    <li><code>lights color "warm";</code> (warm white, good for reading)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Supported Color Names</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <ul class="list-unstyled">
+                                            <li><span class="color-dot" style="background-color: red;"></span> red</li>
+                                            <li><span class="color-dot" style="background-color: green;"></span> green
+                                            </li>
+                                            <li><span class="color-dot" style="background-color: blue;"></span> blue
+                                            </li>
+                                            <li><span class="color-dot" style="background-color: yellow;"></span> yellow
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <ul class="list-unstyled">
+                                            <li><span class="color-dot" style="background-color: orange;"></span> orange
+                                            </li>
+                                            <li><span class="color-dot" style="background-color: purple;"></span> purple
+                                            </li>
+                                            <li><span class="color-dot" style="background-color: pink;"></span> pink
+                                            </li>
+                                            <li><span class="color-dot" style="background-color: cyan;"></span> cyan
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <ul class="list-unstyled">
+                                            <li><span class="color-dot" style="background-color: magenta;"></span>
+                                                magenta</li>
+                                            <li><span class="color-dot" style="background-color: brown;"></span> brown
+                                            </li>
+                                            <li><span class="color-dot" style="background-color: white;"></span> white
+                                            </li>
+                                            <li><span class="color-dot" style="background-color: black;"></span> black
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <ul class="list-unstyled">
+                                            <li><span class="color-dot" style="background-color: #FF9900;"></span> warm
+                                            </li>
+                                            <li><span class="color-dot" style="background-color: #F5F5DC;"></span> cool
+                                            </li>
+                                            <li><span class="color-dot" style="background-color: gray;"></span>
+                                                gray/grey</li>
+                                            <li><span class="color-dot" style="background-color: silver;"></span> silver
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Color Transitions</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Smoothly transition between colors over time:</p>
+                                <pre><code>transition "red" to "blue" over 5 seconds;</code></pre>
+                                <p>The syntax is:</p>
+                                <pre><code>transition "[from-color]" to "[to-color]" over [duration] [time-unit];</code></pre>
+                                <p>You can also transition colors for specific lights or groups:</p>
+                                <pre><code>light 2 transition "#FF0000" to "#0000FF" over 3 seconds;</code></pre>
+                                <pre><code>group kitchen transition "warm" to "cool" over 10 seconds;</code></pre>
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    For the best visual effect, use transitions of at least 1-2 seconds. Very short
+                                    transitions may not be smooth due to the physical limitations of the lights.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Color Variables</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Define color variables for reuse:</p>
+                                <pre><code>var sunset = "#FF7700";
+var ocean = "#0077BE";
+
+lights color sunset;
+wait 5 sec;
+lights color ocean;</code></pre>
+                                <p>Variables make your script more readable and easy to modify.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Features Tab -->
+                    <div class="tab-pane fade" id="advanced" role="tabpanel" aria-labelledby="advanced-tab">
+                        <h4>Advanced Features</h4>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Repeat Loops</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>There are two types of repeat loops:</p>
+
+                                <h6>Count-based Loops</h6>
+                                <pre><code>repeat 5 times {
+  lights color "red";
+  wait 1 sec;
+  lights color "blue";
+  wait 1 sec;
+}</code></pre>
+
+                                <h6>Time-based Loops</h6>
+                                <pre><code>repeat 30 seconds {
+  brightness 100;
+  wait 2 sec;
+  brightness 50;
+  wait 2 sec;
+}</code></pre>
+
+                                <h6>Nested Loops</h6>
+                                <pre><code>repeat 3 times {
+  // Outer loop
+  lights color "green";
+  
+  repeat 2 times {
+    // Inner loop
+    brightness 100;
+    wait 500 ms;
+    brightness 30;
+    wait 500 ms;
+  }
+  
+  wait 2 sec;
+}</code></pre>
+
+                                <div class="alert alert-warning">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                    Be cautious with loops that have many iterations or short wait times, as they may
+                                    stress the Hue Bridge API.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Scene Definitions</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Define reusable scenes and invoke them:</p>
+
+                                <pre><code>// Define a scene
+define scene movieMode {
+  brightness 30;
+  lights color "warm";
+}
+
+// Define another scene
+define scene partyLights {
+  brightness 100;
+  repeat 3 times {
+    lights color "red";
+    wait 1 sec;
+    lights color "blue";
+    wait 1 sec;
+  }
+}
+
+// Main script
+scene movieMode;
+wait 10 sec;
+scene partyLights;</code></pre>
+
+                                <p>Scene names must be unique and follow the same naming rules as variables.</p>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Special Transition Variables</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>Define complex transitions as variables:</p>
+
+                                <pre><code>// Define a transition variable
+var sunsetTransition = {
+  "type": "transition",
+  "fromColor": "#FFDD00",
+  "toColor": "#FF0000",
+  "duration": 20,
+  "timeUnit": "seconds"
+};
+
+// Use the transition variable
+sunsetTransition;</code></pre>
+
+                                <p>This allows you to create more complex transitions that you can reuse throughout your
+                                    script.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Troubleshooting Tab -->
+                    <div class="tab-pane fade" id="troubleshooting" role="tabpanel"
+                        aria-labelledby="troubleshooting-tab">
+                        <h4>Troubleshooting</h4>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Common Errors</h5>
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Error</th>
+                                            <th>Possible Cause</th>
+                                            <th>Solution</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Missing semicolon</td>
+                                            <td>Command doesn't end with a semicolon</td>
+                                            <td>Add a semicolon at the end of each command</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Unbalanced braces</td>
+                                            <td>Missing opening or closing brace</td>
+                                            <td>Ensure all blocks have matching { and }</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Invalid variable name</td>
+                                            <td>Variable name contains spaces or starts with a number</td>
+                                            <td>Use valid variable names (letters, numbers, underscore)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Undefined variable</td>
+                                            <td>Trying to use a variable that hasn't been defined</td>
+                                            <td>Define variables before using them</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Invalid light ID</td>
+                                            <td>Referencing a light ID that doesn't exist</td>
+                                            <td>Check your light IDs in the dashboard</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bridge connection error</td>
+                                            <td>Cannot connect to Hue Bridge</td>
+                                            <td>Check network connection and bridge power</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Emergency Stop</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>If your script is stuck in a loop or not behaving as expected:</p>
+                                <ol>
+                                    <li>Click the "Emergency Stop" button in the toolbar</li>
+                                    <li>Press the Escape key on your keyboard</li>
+                                </ol>
+                                <p>This will immediately stop the script execution and preserve the current state of
+                                    your lights.</p>
+                                <div class="alert alert-danger">
+                                    <i class="fas fa-exclamation-circle me-2"></i>
+                                    If the emergency stop doesn't work, try refreshing the page or using the Hue app to
+                                    control your lights directly.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Best Practices</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>Add comments to document your script</li>
+                                    <li>Use variables for colors and values that you use repeatedly</li>
+                                    <li>Include wait times between commands to avoid overwhelming the Hue Bridge</li>
+                                    <li>Test complex scripts on a small set of lights first</li>
+                                    <li>Save your scripts frequently</li>
+                                    <li>Use scene definitions for reusable lighting configurations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="printDocsBtn">
+                    <i class="fas fa-print me-2"></i>Print Documentation
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom styles for documentation modal */
+    .color-dot {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin-right: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    /* Dark mode improvements */
+    .dark-mode .languageDocsModal .table {
+        color: white !important;
+        border-color: #444;
+        background-color: #2c3035;
+    }
+
+    .dark-mode .languageDocsModal .table thead {
+        background-color: #1c1e22;
+    }
+
+    .dark-mode .languageDocsModal .table th {
+        color: #fff !important;
+        background-color: #1c1e22 !important;
+        border-color: #444 !important;
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    .dark-mode .languageDocsModal .table td {
+        color: #fff !important;
+        border-color: #444 !important;
+        background-color: #2c3035 !important;
+        padding: 10px;
+    }
+
+    .dark-mode .languageDocsModal .table tr:nth-of-type(odd)>td {
+        background-color: #343a40 !important;
+    }
+
+    .dark-mode .languageDocsModal .table tr:hover>td {
+        background-color: #3a4148 !important;
+    }
+
+    .dark-mode .languageDocsModal .table code {
+        color: #ffcc00;
+        background-color: #2b2b2b;
+        padding: 2px 5px;
+        border-radius: 3px;
+    }
+
+    .dark-mode .languageDocsModal .card-header {
+        background-color: #2c3035;
+        color: #f8f9fa;
+        border-bottom: 1px solid #444;
+    }
+
+    .dark-mode .languageDocsModal .card-body {
+        background-color: #343a40;
+        color: #f8f9fa;
+    }
+
+    .dark-mode .languageDocsModal .card {
+        border-color: #444;
+        background-color: #343a40;
+    }
+
+    .dark-mode .languageDocsModal .nav-tabs .nav-link {
+        color: #f8f9fa;
+    }
+
+    .dark-mode .languageDocsModal .nav-tabs .nav-link.active {
+        background-color: #343a40;
+        color: #62cdff;
+        border-color: #444 #444 #343a40;
+    }
+
+    .dark-mode .languageDocsModal .nav-tabs {
+        border-bottom-color: #444;
+    }
+
+    .dark-mode .languageDocsModal .modal-content {
+        background-color: #212529;
+        color: #f8f9fa;
+        border-color: #444;
+    }
+
+    .dark-mode .languageDocsModal .modal-header,
+    .dark-mode .languageDocsModal .modal-footer {
+        border-color: #444;
+    }
+
+    .dark-mode .languageDocsModal code {
+        color: #ff8c00;
+        background-color: #2b2b2b;
+    }
+
+    .dark-mode .languageDocsModal .alert-info {
+        background-color: #1c4b6c;
+        color: #d1ecf1;
+        border-color: #0d6efd;
+    }
+
+    .dark-mode .languageDocsModal .alert-warning {
+        background-color: #553c14;
+        color: #fff3cd;
+        border-color: #ffc107;
+    }
+
+    .dark-mode .languageDocsModal .alert-danger {
+        background-color: #5e2129;
+        color: #f8d7da;
+        border-color: #dc3545;
+    }
+
+    /* Code block styling */
+    .tab-content pre {
+        background-color: rgba(0, 0, 0, 0.05);
+        padding: 1rem;
+        border-radius: 0.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .dark-mode .tab-content pre {
+        background-color: #2b2b2b;
+        border: 1px solid #444;
+        color: #f8f9fa;
+    }
+
+    .dark-mode .languageDocsModal .color-dot {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* Enhanced dark mode styles for better readability */
+    .dark-mode .languageDocsModal h4,
+    .dark-mode .languageDocsModal h5,
+    .dark-mode .languageDocsModal h6 {
+        color: #e9ecef;
+    }
+
+    .dark-mode .languageDocsModal .list-unstyled li {
+        color: #f8f9fa;
+    }
+
+    .dark-mode .languageDocsModal .btn-primary {
+        background-color: #0d6efd;
+        border-color: #0a58ca;
+    }
+
+    .dark-mode .languageDocsModal .btn-primary:hover {
+        background-color: #0b5ed7;
+        border-color: #0a58ca;
+    }
+
+    .dark-mode .languageDocsModal .btn-secondary {
+        background-color: #6c757d;
+        border-color: #565e64;
+    }
+
+    .dark-mode .languageDocsModal .btn-secondary:hover {
+        background-color: #5c636a;
+        border-color: #565e64;
+    }
+
+    /* Print-specific styles */
+    @media print {
+        .modal-dialog {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+        }
+
+        .nav-tabs,
+        .modal-header,
+        .modal-footer {
+            display: none !important;
+        }
+
+        .tab-pane {
+            display: block !important;
+            opacity: 1 !important;
+            break-inside: avoid;
+        }
+
+        .tab-pane h4 {
+            margin-top: 2rem;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            margin-bottom: 1.5rem;
+            break-inside: avoid;
+        }
+    }
+</style>
+
+<!-- Add inline styles to each table in the document to ensure they display properly -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (document.body.classList.contains('dark-mode')) {
+            // Apply styles to all tables in the languageDocsModal
+            const tables = document.querySelectorAll('#languageDocsModal .table');
+            tables.forEach(table => {
+                table.classList.add('table-dark');
+
+                // Add inline styles for maximum compatibility
+                table.style.color = "white";
+                table.style.backgroundColor = "#2c3035";
+
+                // Style table headers
+                const headers = table.querySelectorAll('th');
+                headers.forEach(th => {
+                    th.style.color = "white";
+                    th.style.backgroundColor = "#1c1e22";
+                    th.style.borderColor = "#444";
+                });
+
+                // Style table cells
+                const cells = table.querySelectorAll('td');
+                cells.forEach(td => {
+                    td.style.color = "white";
+                    td.style.borderColor = "#444";
+                });
+            });
+        }
+    });
+</script>

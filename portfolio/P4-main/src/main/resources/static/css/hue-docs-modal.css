@@ -1,0 +1,108 @@
+/* 
+ * Hue Language Documentation Modal
+ * High-specificity styles to ensure proper dark mode rendering
+ */
+
+/* Modal base */
+html body.dark-mode #languageDocsModal.languageDocsModal .modal-content {
+    background-color: #212529 !important;
+    color: #f8f9fa !important;
+    border-color: #444 !important;
+}
+
+/* Tables */
+html body.dark-mode #languageDocsModal.languageDocsModal .table {
+    color: white !important;
+    border-color: #444 !important;
+    background-color: #2c3035 !important;
+}
+
+html body.dark-mode #languageDocsModal.languageDocsModal .table thead {
+    background-color: #1c1e22 !important;
+}
+
+html body.dark-mode #languageDocsModal.languageDocsModal .table th {
+    color: white !important;
+    background-color: #1c1e22 !important;
+    border-color: #444 !important;
+    font-weight: bold !important;
+    padding: 10px !important;
+}
+
+html body.dark-mode #languageDocsModal.languageDocsModal .table td {
+    color: white !important;
+    border-color: #444 !important;
+    padding: 10px !important;
+}
+
+/* Table row states */
+html body.dark-mode #languageDocsModal.languageDocsModal .table tr:nth-of-type(odd)>td {
+    background-color: #343a40 !important;
+}
+
+html body.dark-mode #languageDocsModal.languageDocsModal .table tr:nth-of-type(even)>td {
+    background-color: #2c3035 !important;
+}
+
+html body.dark-mode #languageDocsModal.languageDocsModal .table tr:hover>td {
+    background-color: #3a4148 !important;
+}
+
+/* Code snippets */
+html body.dark-mode #languageDocsModal.languageDocsModal .table code {
+    color: #ffcc00 !important;
+    background-color: #2b2b2b !important;
+    padding: 2px 5px !important;
+    border-radius: 3px !important;
+}
+
+/* Card components */
+html body.dark-mode #languageDocsModal.languageDocsModal .card-header {
+    background-color: #2c3035 !important;
+    color: #f8f9fa !important;
+    border-bottom: 1px solid #444 !important;
+}
+
+html body.dark-mode #languageDocsModal.languageDocsModal .card-body {
+    background-color: #343a40 !important;
+    color: #f8f9fa !important;
+}
+
+html body.dark-mode #languageDocsModal.languageDocsModal .card {
+    border-color: #444 !important;
+    background-color: #343a40 !important;
+}
+
+/* Bootstrap overrides */
+html body.dark-mode #languageDocsModal.languageDocsModal .table-dark {
+    color: white !important;
+    background-color: #2c3035 !important;
+}
+
+/* Alert variants */
+html body.dark-mode #languageDocsModal.languageDocsModal .alert-info {
+    background-color: #1c4b6c !important;
+    color: #d1ecf1 !important;
+    border-color: #0d6efd !important;
+}
+
+html body.dark-mode #languageDocsModal.languageDocsModal .alert-warning {
+    background-color: #553c14 !important;
+    color: #fff3cd !important;
+    border-color: #ffc107 !important;
+}
+
+html body.dark-mode #languageDocsModal.languageDocsModal .alert-danger {
+    background-color: #5e2129 !important;
+    color: #f8d7da !important;
+    border-color: #dc3545 !important;
+}
+
+/* Typography */
+html body.dark-mode #languageDocsModal.languageDocsModal p,
+html body.dark-mode #languageDocsModal.languageDocsModal li,
+html body.dark-mode #languageDocsModal.languageDocsModal h4,
+html body.dark-mode #languageDocsModal.languageDocsModal h5,
+html body.dark-mode #languageDocsModal.languageDocsModal h6 {
+    color: #f8f9fa !important;
+}
