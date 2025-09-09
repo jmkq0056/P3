@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    div.content
+        div.row.center
+            div.popup
+                h1= title
+                    h2 Are you sure you want to delete '#{goal.name}'?
+                    form(action=`/wishlist/goal/${goal._id}/delete`, method="post")
+                        button.btn(type="submit") Delete
+                            if goal.is_priority
+                                //implement: set next goal in goals to priority??
+                        a.btn.space(href='/wishlist') Cancel

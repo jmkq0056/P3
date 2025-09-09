@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 public class JwtUtil {
 
     // The secret key used to sign and verify JWT tokens. This should be kept secure and long enough (at least 256 bits) for HMAC algorithms.
-    private final String SECRET_KEY = "u8J!mC2z*QeR^pA1$sD5wF7#hG9iT&xL";
+    private final String SECRET_KEY = "REMOVED_FOR_SECURITY";
     @Autowired
     private UserLoginService userLoginService;  // Inject UserLoginService to handle token removal
 

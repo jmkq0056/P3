@@ -68,7 +68,7 @@ public class UserLoginService {
         // Checks if an admin user with the company name "Syllesis Fabrik" already exists.
         if (!userLoginRepository.existsByCompanyName("Syllesis Fabrik")) {
             // If not, create a new UserLogin object for the admin user with default login details.
-            UserLogin adminUser = new UserLogin("42167746","Syllesis Fabrik", "admin@syllesisfabrik.com", "A1b2C3d4E5f6G7!", "special", null, null, null, null, null);
+            UserLogin adminUser = new UserLogin("REMOVED_FOR_SECURITY","Syllesis Fabrik", "admin@syllesisfabrik.com", "REMOVED_FOR_SECURITY", "special", null, null, null, null, null);
 
             // Save the new admin user to the database.
             userLoginRepository.save(adminUser);

@@ -36,8 +36,8 @@ public class HueBridgeServiceTest {
     private ObjectMapper objectMapper;
 
     // Bridge info - must match hardcoded values in HueBridgeService
-    private final String EXPECTED_BRIDGE_IP = "192.168.8.100";
-    private final String EXPECTED_API_KEY = "11pToqtVvmoGFJUKshDTZcMChfEMfxDqu-FDB33A";
+    private final String EXPECTED_BRIDGE_IP = "REMOVED_FOR_SECURITY";
+    private final String EXPECTED_API_KEY = "REMOVED_FOR_SECURITY";
 
     @BeforeEach
     public void setUp() throws Exception {

@@ -245,7 +245,7 @@ public class IntegrationTests {
         mockMvc.perform(get("/api/scripts/test-connection"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.connected").value(true))
-                .andExpect(jsonPath("$.bridgeIp").value("192.168.8.100"))
+                .andExpect(jsonPath("$.bridgeIp").value("REMOVED_FOR_SECURITY"))
                 .andExpect(jsonPath("$.message").value(containsString("Successfully connected")));
 
         // Test disconnected state

@@ -35,8 +35,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class HueBridgeService {
 
     // Bridge config with fallback defaults
-    private String bridgeIp = "192.168.8.100";
-    private String apiKey = "11pToqtVvmoGFJUKshDTZcMChfEMfxDqu-FDB33A";
+    private String bridgeIp = "REMOVED_FOR_SECURITY";
+    private String apiKey = "REMOVED_FOR_SECURITY";
     private static final String CONFIG_FILE = "config/bridge.properties";
     private static final Logger logger = Logger.getLogger(HueBridgeService.class.getName());
 

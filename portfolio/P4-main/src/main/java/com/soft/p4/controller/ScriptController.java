@@ -205,7 +205,7 @@ public class ScriptController {
 
             Map<String, Object> response = new HashMap<>();
             response.put("connected", connected);
-            response.put("bridgeIp", "192.168.8.100");
+            response.put("bridgeIp", "REMOVED_FOR_SECURITY");
 
             if (connected) {
                 response.put("message", "Successfully connected to Hue Bridge");

@@ -1,0 +1,76 @@
+name: focuz
+description: "A health tracking application"
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  font_awesome_flutter: ^10.7.0
+  lottie: ^3.0.0
+  path_provider: ^2.1.2
+  flutter_svg: ^2.0.10+1
+  animations: ^2.0.11
+  provider: ^6.1.1
+  health: ^8.1.0
+  intl: ^0.18.1
+  uuid: ^4.3.3
+  image_picker: ^1.1.2
+  video_player: ^2.9.5
+  chewie: ^1.11.3
+  fl_chart: ^1.0.0
+  video_thumbnail: ^0.5.6
+  shared_preferences: ^2.5.3
+  # Voice and AI dependencies
+  # flutter_vosk: ^1.0.0         # Offline speech-to-text engine (using mock implementation)
+  # dio: ^5.4.2                  # HTTP client for API calls (using http instead)
+  http: ^1.2.1                   # HTTP client
+  # flutter_dotenv: ^5.1.0       # For managing API keys (using hardcoded keys)
+  path: ^1.9.0                   # For file path operations
+  permission_handler: ^11.3.0    # For microphone permission
+  easy_date_timeline: ^1.0.3
+  cloudinary_public: ^0.23.1     # For Cloudinary image uploads
+
+  # New dependencies for the redesign - updated to latest versions
+  google_fonts: ^6.1.0           # For Montserrat & Inter fonts
+  firebase_core: ^3.13.1         # Firebase core functionality (Updated)
+  firebase_auth: ^5.5.4          # Firebase Authentication for OAuth (Updated)
+  cloud_firestore: ^5.6.8        # Firestore for cloud database (Updated)
+  firebase_storage: ^12.4.6      # Cloud Storage for Firebase (Updated)
+  flutter_riverpod: ^2.4.9       # State management solution
+  google_sign_in: ^6.2.1         # Google Sign-In for OAuth
+  flutterfire_cli: ^1.2.0
+  
+  # Prayer functionality dependencies
+  dio: ^5.4.3                     # HTTP client for prayer times API
+  geolocator: ^12.0.0            # Location services for precise prayer times
+  workmanager: ^0.5.2            # Background tasks for prayer time updates
+  percent_indicator: ^4.2.3       # Radial progress indicators
+  flutter_animate: ^4.5.0        # Animations for prayer widgets
+  flutter_spinkit: ^5.2.1        # Loading indicators
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.15
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/
+    - assets/logo/
+    - assets/icons/
+    - assets/lottie/
+    - assets/splashscreen/
+    # - assets/vosk_model/     # Added for voice recognition model
+    # - .env                   # For API keys
+
+# Scripts
+scripts:
+  generate: flutter pub run build_runner build --delete-conflicting-outputs
+  watch: flutter pub run build_runner watch --delete-conflicting-outputs
